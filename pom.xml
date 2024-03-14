@@ -73,6 +73,7 @@
     <!-- Selenium 4.14 and later requires Java 11 -->
     <selenium.version>4.13.0</selenium.version>
     <selenium.latest.version>4.16.1</selenium.latest.version>
+    <graphwalker.version>4.3.2</graphwalker.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -531,6 +532,33 @@
       <version>${slf4j.version}</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>com.google.guava</groupId>
+          <artifactId>failureaccess</artifactId>
+          <version>1.0</version>
+      </dependency>
+
+    <!-- GraphWalker -->
+      <dependency>
+          <groupId>org.graphwalker</groupId>
+          <artifactId>graphwalker-core</artifactId>
+          <version>${graphwalker.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.graphwalker</groupId>
+          <artifactId>graphwalker-io</artifactId>
+          <version>${graphwalker.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.graphwalker</groupId>
+          <artifactId>graphwalker-java</artifactId>
+          <version>${graphwalker.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.graphwalker</groupId>
+          <artifactId>graphwalker-websocket</artifactId>
+          <version>${graphwalker.version}</version>
+      </dependency>
   </dependencies>
 
   <build>
@@ -650,6 +678,21 @@
           </execution>
         </executions>
       </plugin>
+        <plugin>
+            <groupId>org.graphwalker</groupId>
+            <artifactId>graphwalker-maven-plugin</artifactId>
+            <version>${graphwalker.version}</version>
+            <!-- Bind goals to the default lifecycle -->
+            <executions>
+                <execution>
+                    <id>generate-test-sources</id>
+                    <phase>compile</phase>
+                    <goals>
+                        <goal>generate-test-sources</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
