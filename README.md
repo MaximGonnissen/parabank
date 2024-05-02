@@ -82,3 +82,7 @@ __soatest(.sh\|.bat)__                 | Executes Parasoft SOAtest API and Web f
 set-vars.(.sh\|.bat): setup JTEST_HOME and SOATEST_HOME environment variable before running any script.
 all reports will be stored under target/report/<build ID> directory.
 on Windows, 7zip must be installed (default to C:\Program Files\7-zip) to run deploy-jtest-monitor.bat script.
+
+# GraphWalker
+
+See the relevant [README.md](src/test/java/com/parasoft/parabank/graphwalker/README.md) for more information.
