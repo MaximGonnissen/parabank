@@ -8,4 +8,5 @@ public class Coverage {
     public static final String QuickRandomEdgeCoverage100 = "quick_random(edge_coverage(100))";
     public static final String WeightedRandomEdgeCoverage100 = "weighted_random(edge_coverage(100))";
     public static final String AStarReachedVertex = "a_star(reached_vertex())"; // TODO: Add reached vertex
+    public static final String DirectedChinesePostmanCoverage = "directed_chinese_postman(edge_coverage(100))";
 }
