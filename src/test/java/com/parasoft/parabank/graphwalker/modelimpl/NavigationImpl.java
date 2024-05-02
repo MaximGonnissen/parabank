@@ -8,7 +8,7 @@ import org.graphwalker.Navigation;
 import org.graphwalker.java.annotation.GraphWalker;
 import org.junit.Assert;
 
-@GraphWalker(value = "random(edge_coverage(100))", start = "v_Dummy_Navigation_SHARED")
+@GraphWalker(value = "random(edge_coverage(100))")
 public class NavigationImpl extends TestExecutionContext implements Navigation {
     @Override
     public void e_Click_Find_Transactions() {
@@ -22,11 +22,11 @@ public class NavigationImpl extends TestExecutionContext implements Navigation {
 
     @Override
     public void v_Dummy_Navigation_SHARED() {
-        if (getLastElement() == null) {
-            // Assume start of an isolated test, log in and navigate
-            Helpers.ensureLoggedIn();
-            Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
-        }
+//        if (getLastElement() == null) {
+//            // Assume start of an isolated test, log in and navigate
+//            Helpers.ensureLoggedIn();
+//            Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
+//        }
 
         Assert.assertTrue(Driver.containsUrl(Urls.ACCOUNTS_OVERVIEW_URL));
     }

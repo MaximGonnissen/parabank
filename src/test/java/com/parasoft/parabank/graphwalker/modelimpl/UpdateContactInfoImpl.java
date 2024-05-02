@@ -12,7 +12,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100, start = "v_Update_Contact_Info_SHARED")
+@GraphWalker(value = Coverage.RandomEdgeCoverage100)
 public class UpdateContactInfoImpl extends TestExecutionContext implements UpdateContactInfo {
 
     private boolean isEmpty(WebElement element) {

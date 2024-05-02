@@ -10,7 +10,7 @@ import org.graphwalker.java.annotation.GraphWalker;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100, start = "v_Register_SHARED")
+@GraphWalker(value = Coverage.RandomEdgeCoverage100)
 public class RegisterImpl extends TestExecutionContext implements Register {
 
     private void clickRegister() {
@@ -56,11 +56,11 @@ public class RegisterImpl extends TestExecutionContext implements Register {
 
     @Override
     public void v_Register_SHARED() {
-        if (getLastElement() == null) {
-            // Assume start of an isolated test, log in and navigate
-            Helpers.ensureLoggedIn();
-            Driver.navigateTo(Urls.REGISTER_URL);
-        }
+//        if (getLastElement() == null) {
+//            // Assume start of an isolated test, log in and navigate
+//            Helpers.ensureLoggedIn();
+//            Driver.navigateTo(Urls.REGISTER_URL);
+//        }
 
         Assert.assertTrue(Driver.containsUrl(Urls.REGISTER_URL));
     }

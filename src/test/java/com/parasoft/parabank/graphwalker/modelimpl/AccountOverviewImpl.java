@@ -10,7 +10,7 @@ import org.graphwalker.java.annotation.GraphWalker;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100, start = "v_Account_Overview_SHARED")
+@GraphWalker(value = Coverage.RandomEdgeCoverage100)
 public class AccountOverviewImpl extends TestExecutionContext implements AccountOverview {
     @Override
     public void e_Select_Account() {
@@ -24,11 +24,11 @@ public class AccountOverviewImpl extends TestExecutionContext implements Account
 
     @Override
     public void v_Account_Overview_SHARED() {
-        if (getLastElement() == null) {
-            // Assume start of an isolated test, log in and navigate
-            Helpers.ensureLoggedIn();
-            Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
-        }
+//        if (getLastElement() == null) {
+//            // Assume start of an isolated test, log in and navigate
+//            Helpers.ensureLoggedIn();
+//            Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
+//        }
 
         Assert.assertTrue(Driver.containsUrl(Urls.ACCOUNTS_OVERVIEW_URL));
     }

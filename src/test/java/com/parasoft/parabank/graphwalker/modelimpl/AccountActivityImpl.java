@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100, start = "v_Account_Activity_SHARED")
+@GraphWalker(value = Coverage.RandomEdgeCoverage100)
 public class AccountActivityImpl extends TestExecutionContext implements AccountActivity {
 
     @Override
@@ -24,13 +24,13 @@ public class AccountActivityImpl extends TestExecutionContext implements Account
 
     @Override
     public void v_Account_Activity_SHARED() {
-        if (getLastElement() == null) {
-            // Assume start of an isolated test, log in and navigate to account activity
-            Helpers.ensureLoggedIn();
-            Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
-            Driver.clickElement(By.cssSelector("html > body > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > div > div > table > tbody > tr:nth-of-type(1) > td:nth-of-type(1) > a"));
-            Driver.waitForElement(By.xpath("//h1[contains(text(),'Account Activity')]"));
-        }
+//        if (getLastElement() == null) {
+//            // Assume start of an isolated test, log in and navigate to account activity
+//            Helpers.ensureLoggedIn();
+//            Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
+//            Driver.clickElement(By.cssSelector("html > body > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > div > div > table > tbody > tr:nth-of-type(1) > td:nth-of-type(1) > a"));
+//            Driver.waitForElement(By.xpath("//h1[contains(text(),'Account Activity')]"));
+//        }
 
         // At account activity page
         Assert.assertTrue(Driver.containsUrl(Urls.ACCOUNTS_ACTIVITY_URL));

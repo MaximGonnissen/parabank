@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100, start = "v_Find_Transactions_SHARED")
+@GraphWalker(value = Coverage.RandomEdgeCoverage100)
 public class FindTransactionsImpl extends TestExecutionContext implements FindTransactions {
     @Override
     public void e_Select_Account() {

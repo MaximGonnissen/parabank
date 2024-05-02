@@ -13,7 +13,7 @@ import org.openqa.selenium.By;
 import java.util.Arrays;
 import java.util.List;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100, start = "v_Bill_Pay_SHARED")
+@GraphWalker(value = Coverage.RandomEdgeCoverage100)
 public class BillPayImpl extends TestExecutionContext implements BillPay {
 
     private void sendPayment() {
@@ -79,11 +79,11 @@ public class BillPayImpl extends TestExecutionContext implements BillPay {
 
     @Override
     public void v_Bill_Pay_SHARED() {
-        if (getLastElement() == null) {
-            // Assume start of an isolated test, log in and navigate
-            Helpers.ensureLoggedIn();
-            Driver.navigateTo(Urls.BILL_PAY_URL);
-        }
+//        if (getLastElement() == null) {
+//            // Assume start of an isolated test, log in and navigate
+//            Helpers.ensureLoggedIn();
+//            Driver.navigateTo(Urls.BILL_PAY_URL);
+//        }
 
         // At bill pay page
         Assert.assertTrue(Driver.containsUrl(Urls.BILL_PAY_URL));

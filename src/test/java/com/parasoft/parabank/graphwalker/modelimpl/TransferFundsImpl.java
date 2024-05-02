@@ -13,7 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100, start = "v_Transfer_Funds_SHARED")
+@GraphWalker(value = Coverage.RandomEdgeCoverage100)
 public class TransferFundsImpl extends TestExecutionContext implements TransferFunds {
 
     private Select getFromAccount() {

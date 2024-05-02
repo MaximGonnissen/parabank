@@ -11,7 +11,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100, start = "v_Open_New_Account_SHARED")
+@GraphWalker(value = Coverage.RandomEdgeCoverage100)
 public class OpenNewAccountImpl extends TestExecutionContext implements OpenNewAccount {
 
     @Override
@@ -63,11 +63,11 @@ public class OpenNewAccountImpl extends TestExecutionContext implements OpenNewA
 
     @Override
     public void v_Open_New_Account_SHARED() {
-        if (getLastElement() == null) {
-            // Assume start of an isolated test, log in and navigate
-            Helpers.ensureLoggedIn();
-            Driver.navigateTo(Urls.OPEN_NEW_ACCOUNT_URL);
-        }
+//        if (getLastElement() == null) {
+//            // Assume start of an isolated test, log in and navigate
+//            Helpers.ensureLoggedIn();
+//            Driver.navigateTo(Urls.OPEN_NEW_ACCOUNT_URL);
+//        }
 
         // At open new account page
         Assert.assertTrue(Driver.containsUrl(Urls.OPEN_NEW_ACCOUNT_URL));
