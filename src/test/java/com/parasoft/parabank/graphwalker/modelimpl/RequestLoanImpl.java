@@ -46,47 +46,7 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
     }
 
     @Override
-    public void e_Fill_Down_Payment() {
-
-    }
-
-    @Override
-    public void e_Goto_Account_Activity() {
-
-    }
-
-    @Override
-    public void v_Loan_Amount_Filled() {
-
-    }
-
-    @Override
-    public void e_Invalid_Missing_Down_Payment() {
-
-    }
-
-    @Override
-    public void e_Invalid_Missing_Loan_Amount_Invalid() {
-
-    }
-
-    @Override
     public void v_Request_Loan_SHARED() {
-
-    }
-
-    @Override
-    public void e_Fill_Down_Payment_Invalid() {
-
-    }
-
-    @Override
-    public void e_Invalid_Missing_Loan_Amount() {
-
-    }
-
-    @Override
-    public void v_Down_Payment_Filled() {
 
     }
 
@@ -96,12 +56,92 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
     }
 
     @Override
-    public void e_Fill_Loan_Amount() {
+    public void v_Loan_Processed() {
 
     }
 
     @Override
-    public void v_Loan_Processed() {
+    public void v_Insufficient_Funds() {
+
+    }
+
+    @Override
+    public void v_Loan_Too_High() {
+
+    }
+
+    @Override
+    public void e_Insufficient_Funds_Apply_Now() {
+
+    }
+
+    @Override
+    public void e_Loan_Too_High() {
+
+    }
+
+    @Override
+    public void e_Invalid_Down_Payment_Missing() {
+
+    }
+
+    @Override
+    public void v_Loan_Too_High_Error() {
+
+    }
+
+    @Override
+    public void e_Goto_New_Account() {
+
+    }
+
+    @Override
+    public void e_Insufficient_Funds() {
+
+    }
+
+    @Override
+    public void e_Invalid_Loan_Amount_Missing() {
+
+    }
+
+    @Override
+    public void v_Insufficient_Funds_Error() {
+
+    }
+
+    @Override
+    public void e_Invalid_Apply_Now() {
+
+    }
+
+    @Override
+    public void v_Loan_Amount_Missing() {
+
+    }
+
+    @Override
+    public void e_Valid_Information_Filled() {
+
+    }
+
+    @Override
+    public void v_Down_Payment_Missing() {
+
+    }
+
+    @Override
+    public void e_Loan_Too_High_Apply_Now() {
+
+    }
+
+    @Override
+    public void e_Invalid_Information() {
+
+    }
+
+    @Override
+    public void e_NewEdge() {
 
     }
 }

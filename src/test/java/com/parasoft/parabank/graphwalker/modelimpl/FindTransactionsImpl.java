@@ -21,20 +21,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     }
 
     @Override
-    public void e_Fill_Date_Range() {
-        WebElement from = Driver.findElement(By.xpath("//*[@id='criteria.fromDate']"));
-        WebElement to = Driver.findElement(By.xpath("//*[@id='criteria.toDate']"));
-        from.sendKeys("13-03-2023");
-        to.sendKeys("13-03-2025");
-    }
-
-    @Override
     public void e_Navigate() {
-
-    }
-
-    @Override
-    public void v_Find_By_Id_Filled() {
 
     }
 
@@ -44,22 +31,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     }
 
     @Override
-    public void e_Fill_Date() {
-
-    }
-
-    @Override
     public void e_No_Action() {
-
-    }
-
-    @Override
-    public void e_Fill_Id() {
-
-    }
-
-    @Override
-    public void e_Fill_Amount() {
 
     }
 
@@ -70,11 +42,6 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
 
     @Override
     public void v_Transaction_Details() {
-
-    }
-
-    @Override
-    public void e_Invalid_Find_Transactions() {
 
     }
 
@@ -94,27 +61,135 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     }
 
     @Override
-    public void e_Valid_Find_Transactions() {
-
-    }
-
-    @Override
-    public void v_Find_By_Amount() {
-
-    }
-
-    @Override
-    public void v_Find_By_Date_Range() {
-
-    }
-
-    @Override
-    public void v_Find_By_Date() {
-
-    }
-
-    @Override
     public void v_Find_Transactions_SHARED() {
 
     }
+
+    @Override
+    public void v_Find_By_Date_Invalid() {
+
+    }
+
+    @Override
+    public void e_Fill_Amount_Valid() {
+
+    }
+
+    @Override
+    public void e_Invalid_Date_Range_Find_Transactions() {
+
+    }
+
+    @Override
+    public void e_Invalid_Id_Find_Transactions() {
+
+    }
+
+    @Override
+    public void e_Fill_Date_Range_Valid() {
+
+    }
+
+    @Override
+    public void v_Find_By_Date_Range_Invalid() {
+
+    }
+
+    @Override
+    public void e_Invalid_Amount_Find_Transactions() {
+
+    }
+
+    @Override
+    public void e_Fill_Id_Valid() {
+
+    }
+
+    @Override
+    public void e_Valid_Date_Range_Find_Transactions() {
+
+    }
+
+    @Override
+    public void v_Find_By_Amount_Valid() {
+
+    }
+
+    @Override
+    public void e_Fill_Amount_Invalid() {
+
+    }
+
+    @Override
+    public void e_Fill_Date_Range_Invalid() {
+
+    }
+
+    @Override
+    public void e_Valid_Amount_Find_Transactions() {
+
+    }
+
+    @Override
+    public void v_Find_By_Date_Range_Valid() {
+
+    }
+
+    @Override
+    public void e_Fill_Date_Valid() {
+
+    }
+
+    @Override
+    public void v_Find_By_Id_Invalid() {
+
+    }
+
+    @Override
+    public void e_Fill_Id_Invalid() {
+
+    }
+
+    @Override
+    public void v_Find_By_Id_Valid() {
+
+    }
+
+    @Override
+    public void v_Find_By_Date_Valid() {
+
+    }
+
+    @Override
+    public void e_Fill_Date_Invalid() {
+
+    }
+
+    @Override
+    public void v_Find_By_Amount_Invalid() {
+
+    }
+
+    @Override
+    public void e_Invalid_Date_Find_Transactions() {
+
+    }
+
+    @Override
+    public void e_Valid_Id_Find_Transactions() {
+
+    }
+
+    @Override
+    public void e_Valid_Date_Find_Transactions() {
+
+    }
+
+//    @Override
+//    public void e_Fill_Date_Range() {
+//        WebElement from = Driver.findElement(By.xpath("//*[@id='criteria.fromDate']"));
+//        WebElement to = Driver.findElement(By.xpath("//*[@id='criteria.toDate']"));
+//        from.sendKeys("13-03-2023");
+//        to.sendKeys("13-03-2025");
+//    }
 }
