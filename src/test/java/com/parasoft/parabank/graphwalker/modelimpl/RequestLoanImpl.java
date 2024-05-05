@@ -3,9 +3,12 @@ package com.parasoft.parabank.graphwalker.modelimpl;
 
 import com.parasoft.parabank.graphwalker.Base.TestExecutionContext;
 import com.parasoft.parabank.graphwalker.utils.Coverage;
+import com.parasoft.parabank.graphwalker.utils.Driver;
+import com.parasoft.parabank.graphwalker.utils.Urls;
 import org.graphwalker.RequestLoan;
 import org.graphwalker.core.machine.ExecutionContext;
 import org.graphwalker.java.annotation.GraphWalker;
+import org.junit.Assert;
 
 
 @GraphWalker(value = Coverage.RandomEdgeCoverage100)
@@ -17,7 +20,7 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
 
     @Override
     public void e_Navigate() {
-
+        Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
     }
 
     @Override
@@ -32,7 +35,7 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
 
     @Override
     public void v_Dummy_Navigation_SHARED() {
-
+        Assert.assertFalse(Driver.containsUrl(Urls.INDEX_URL));
     }
 
     @Override
@@ -42,7 +45,7 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
 
     @Override
     public void e_No_Action() {
-
+        // No action
     }
 
     @Override

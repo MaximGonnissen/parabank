@@ -4,8 +4,10 @@ import com.parasoft.parabank.graphwalker.Base.TestExecutionContext;
 import com.parasoft.parabank.graphwalker.utils.Coverage;
 import com.parasoft.parabank.graphwalker.utils.Driver;
 import com.parasoft.parabank.graphwalker.utils.Helpers;
+import com.parasoft.parabank.graphwalker.utils.Urls;
 import org.graphwalker.FindTransactions;
 import org.graphwalker.java.annotation.GraphWalker;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -22,17 +24,17 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
 
     @Override
     public void e_Navigate() {
-
+        Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
     }
 
     @Override
     public void v_Dummy_Navigation_SHARED() {
-
+        Assert.assertFalse(Driver.containsUrl(Urls.INDEX_URL));
     }
 
     @Override
     public void e_No_Action() {
-
+        // No action
     }
 
     @Override
@@ -137,7 +139,10 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
 
     @Override
     public void e_Fill_Date_Valid() {
-
+        WebElement from = Driver.findElement(By.xpath("//*[@id='criteria.fromDate']"));
+        WebElement to = Driver.findElement(By.xpath("//*[@id='criteria.toDate']"));
+        from.sendKeys("13-03-2022");
+        to.sendKeys("14-03-2050");
     }
 
     @Override
@@ -162,7 +167,10 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
 
     @Override
     public void e_Fill_Date_Invalid() {
-
+        WebElement from = Driver.findElement(By.xpath("//*[@id='criteria.fromDate']"));
+        WebElement to = Driver.findElement(By.xpath("//*[@id='criteria.toDate']"));
+        from.sendKeys("13-03-2022");
+        to.sendKeys("14-03-2022");
     }
 
     @Override
@@ -172,7 +180,6 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
 
     @Override
     public void e_Invalid_Date_Find_Transactions() {
-
     }
 
     @Override
@@ -184,12 +191,4 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     public void e_Valid_Date_Find_Transactions() {
 
     }
-
-//    @Override
-//    public void e_Fill_Date_Range() {
-//        WebElement from = Driver.findElement(By.xpath("//*[@id='criteria.fromDate']"));
-//        WebElement to = Driver.findElement(By.xpath("//*[@id='criteria.toDate']"));
-//        from.sendKeys("13-03-2023");
-//        to.sendKeys("13-03-2025");
-//    }
 }
