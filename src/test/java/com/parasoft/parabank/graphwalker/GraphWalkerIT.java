@@ -7,6 +7,7 @@ import com.parasoft.parabank.graphwalker.utils.Helpers;
 import com.parasoft.parabank.graphwalker.utils.ResultHandler;
 import com.parasoft.parabank.graphwalker.utils.Urls;
 import com.parasoft.parabank.it.util.DriverFactory;
+import org.graphwalker.core.algorithm.DirectedChinesePostman;
 import org.graphwalker.core.condition.EdgeCoverage;
 import org.graphwalker.core.generator.DirectedChinesePostmanPath;
 import org.graphwalker.core.generator.SingletonRandomGenerator;
@@ -72,11 +73,19 @@ public class GraphWalkerIT {
                 OpenNewAccountImpl.class,
                 RegisterImpl.class,
                 TransferFundsImpl.class,
-                UpdateContactInfoImpl.class
+                UpdateContactInfoImpl.class,
+                AccountActivityImpl.class,
+                RequestLoanImpl.class,
+                FindTransactionsImpl.class
         );
 //        executor.getMachine().getCurrentContext().setPathGenerator(new DirectedChinesePostmanPath(new EdgeCoverage(100)));
-        Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
+
+        new DirectedChinesePostman(executor.getMachine().getCurrentContext());
+
+        throw new IOException("Managed to create path!");
+
+//        Result result = executor.execute(true);
+//        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
