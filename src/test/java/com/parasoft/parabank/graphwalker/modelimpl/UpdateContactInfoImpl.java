@@ -19,8 +19,7 @@ public class UpdateContactInfoImpl extends TestExecutionContext implements Updat
         return element.getAttribute("value").isEmpty();
     }
 
-    private void fillRequiredFields() {
-        // Clear fields
+    private void clearFields() {
         Driver.clearField(By.xpath("//*[@id='customer.firstName']"));
         Driver.clearField(By.xpath("//*[@id='customer.lastName']"));
         Driver.clearField(By.xpath("//*[@id='customer.address.street']"));
@@ -28,6 +27,11 @@ public class UpdateContactInfoImpl extends TestExecutionContext implements Updat
         Driver.clearField(By.xpath("//*[@id='customer.address.state']"));
         Driver.clearField(By.xpath("//*[@id='customer.address.zipCode']"));
         Driver.clearField(By.xpath("//*[@id='customer.phoneNumber']"));
+    }
+
+    private void fillRequiredFields() {
+        // Clear fields
+        clearFields();
 
         // Fill in required fields
         Driver.findElement(By.xpath("//*[@id='customer.firstName']")).sendKeys("John");
@@ -84,11 +88,11 @@ public class UpdateContactInfoImpl extends TestExecutionContext implements Updat
 
     @Override
     public void v_Update_Contact_Info_SHARED() {
-        if (getLastElement() == null) {
-            // Assume start of an isolated test, log in and navigate
-            Helpers.ensureLoggedIn();
-            Driver.navigateTo(Urls.UPDATE_INFO_URL);
-        }
+//        if (getLastElement() == null) {
+//            // Assume start of an isolated test, log in and navigate
+//            Helpers.ensureLoggedIn();
+//            Driver.navigateTo(Urls.UPDATE_INFO_URL);
+//        }
 
         Assert.assertTrue(Driver.containsUrl(Urls.UPDATE_INFO_URL));
     }
@@ -96,6 +100,7 @@ public class UpdateContactInfoImpl extends TestExecutionContext implements Updat
     @Override
     public void e_Change_Valid_Contact_Info() {
         fillRequiredFields();
+        Driver.clearField(By.xpath("//*[@id='customer.firstName']"));
         Driver.fillField(By.xpath("//*[@id='customer.firstName']"), "Jane");
     }
 
