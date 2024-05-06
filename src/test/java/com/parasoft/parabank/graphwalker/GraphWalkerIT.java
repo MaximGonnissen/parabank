@@ -1,6 +1,5 @@
 package com.parasoft.parabank.graphwalker;
 
-import com.parasoft.parabank.graphwalker.Base.TestExecutionContext;
 import com.parasoft.parabank.graphwalker.modelimpl.*;
 import com.parasoft.parabank.graphwalker.utils.Driver;
 import com.parasoft.parabank.graphwalker.utils.Helpers;
@@ -8,24 +7,18 @@ import com.parasoft.parabank.graphwalker.utils.ResultHandler;
 import com.parasoft.parabank.graphwalker.utils.Urls;
 import com.parasoft.parabank.it.util.DriverFactory;
 import org.graphwalker.core.algorithm.DirectedChinesePostman;
-import org.graphwalker.core.condition.EdgeCoverage;
-import org.graphwalker.core.generator.DirectedChinesePostmanPath;
 import org.graphwalker.core.generator.SingletonRandomGenerator;
 import org.graphwalker.java.test.Executor;
 import org.graphwalker.java.test.Result;
-import org.graphwalker.java.test.TestBuilder;
 import org.graphwalker.java.test.TestExecutor;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.nio.file.Paths;
-
-import static com.parasoft.parabank.graphwalker.Base.TestExecutionContext.MODEL_PATH;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * <b>Integration tests for the GraphWalker model.</b>
@@ -39,6 +32,24 @@ public class GraphWalkerIT {
      */
     protected static final long SEED = 0;
     protected static Logger logger = LoggerFactory.getLogger(GraphWalkerIT.class);
+
+    /**
+     * <b>Before Class</b>
+     * <p>We check whether the container is running, and skip the tests if it is not.</p>
+     */
+    @BeforeClass
+    public static void beforeClass() {
+        try {
+            final URLConnection connection = new URL(Urls.BASE_URL).openConnection();
+            connection.connect();
+        } catch (MalformedURLException e) {
+            logger.error("Malformed URL: {}", e.getMessage());
+        } catch (IOException e) {
+            logger.error("Could not connect to the URL: {}", e.getMessage());
+            logger.info("Skipping GraphWalker tests...");
+            Assume.assumeFalse(true);
+        }
+    }
 
     /**
      * <b>Before Test</b>
@@ -65,19 +76,7 @@ public class GraphWalkerIT {
 
     @Test
     public void fullTest() throws IOException {
-        Executor executor = new TestExecutor(
-                LoginImpl.class,
-                AccountOverviewImpl.class,
-                BillPayImpl.class,
-                NavigationImpl.class,
-                OpenNewAccountImpl.class,
-                RegisterImpl.class,
-                TransferFundsImpl.class,
-                UpdateContactInfoImpl.class,
-                AccountActivityImpl.class,
-                RequestLoanImpl.class,
-                FindTransactionsImpl.class
-        );
+        Executor executor = new TestExecutor(LoginImpl.class, AccountOverviewImpl.class, BillPayImpl.class, NavigationImpl.class, OpenNewAccountImpl.class, RegisterImpl.class, TransferFundsImpl.class, UpdateContactInfoImpl.class, AccountActivityImpl.class, RequestLoanImpl.class, FindTransactionsImpl.class);
 //        executor.getMachine().getCurrentContext().setPathGenerator(new DirectedChinesePostmanPath(new EdgeCoverage(100)));
 
         new DirectedChinesePostman(executor.getMachine().getCurrentContext());
@@ -131,7 +130,7 @@ public class GraphWalkerIT {
      * <b>Find Transactions implementation integration test</b>
      *
      * @throws IOException if an I/O error occurs
-     *                     TODO: Needs model rework
+     *                                         TODO: Needs model rework
      * @see FindTransactionsImpl
      */
     @Test
@@ -197,7 +196,7 @@ public class GraphWalkerIT {
      * <b>Request Loan implementation integration test</b>
      *
      * @throws IOException if an I/O error occurs
-     *                     TODO: Needs model rework
+     *                                         TODO: Needs model rework
      * @see RequestLoanImpl
      */
     @Test
