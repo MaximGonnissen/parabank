@@ -95,7 +95,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testAccountActivity() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, AccountActivityImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, AccountOverviewImpl.class, AccountActivityImpl.class);
         Result result = executor.execute(true);
         Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
