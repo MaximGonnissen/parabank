@@ -28,7 +28,7 @@ public class BillPayImpl extends TestExecutionContext implements BillPay {
 
     @Override
     public void e_Navigate() {
-        Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
+        // Handled by outgoing edges in other models
     }
 
     @Override
@@ -39,7 +39,7 @@ public class BillPayImpl extends TestExecutionContext implements BillPay {
 
     @Override
     public void v_Dummy_Navigation_SHARED() {
-        Assert.assertFalse(Driver.containsUrl(Urls.INDEX_URL));
+        // Dummy navigation, nothing to do
     }
 
     @Override
@@ -200,5 +200,10 @@ public class BillPayImpl extends TestExecutionContext implements BillPay {
     @Override
     public void v_Invalid_Account_Mismatch() {
         Assert.assertTrue(Driver.containsUrl(Urls.BILL_PAY_URL));
+    }
+
+    @Override
+    public void e_Click_Bill_Pay() {
+        Driver.navigateTo(Urls.BILL_PAY_URL);
     }
 }

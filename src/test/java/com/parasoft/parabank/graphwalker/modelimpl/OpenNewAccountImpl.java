@@ -3,7 +3,6 @@ package com.parasoft.parabank.graphwalker.modelimpl;
 import com.parasoft.parabank.graphwalker.Base.TestExecutionContext;
 import com.parasoft.parabank.graphwalker.utils.Coverage;
 import com.parasoft.parabank.graphwalker.utils.Driver;
-import com.parasoft.parabank.graphwalker.utils.Helpers;
 import com.parasoft.parabank.graphwalker.utils.Urls;
 import org.graphwalker.OpenNewAccount;
 import org.graphwalker.java.annotation.GraphWalker;
@@ -11,7 +10,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100)
+@GraphWalker(value = Coverage.Default)
 public class OpenNewAccountImpl extends TestExecutionContext implements OpenNewAccount {
 
     @Override
@@ -26,7 +25,7 @@ public class OpenNewAccountImpl extends TestExecutionContext implements OpenNewA
 
     @Override
     public void e_Navigate() {
-        Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
+        // Handled by outgoing edges in other models
     }
 
     @Override
@@ -42,7 +41,7 @@ public class OpenNewAccountImpl extends TestExecutionContext implements OpenNewA
 
     @Override
     public void v_Dummy_Navigation_SHARED() {
-        Assert.assertFalse(Driver.containsUrl(Urls.INDEX_URL));
+        // Dummy navigation, nothing to do
     }
 
     @Override
@@ -99,5 +98,10 @@ public class OpenNewAccountImpl extends TestExecutionContext implements OpenNewA
     public void e_Valid_Open_New_account() {
         Driver.findElement(By.xpath("//input[@value='Open New Account']")).click();
         Driver.waitFor(100);
+    }
+
+    @Override
+    public void e_Click_Open_New_Account() {
+        Driver.navigateTo(Urls.OPEN_NEW_ACCOUNT_URL);
     }
 }

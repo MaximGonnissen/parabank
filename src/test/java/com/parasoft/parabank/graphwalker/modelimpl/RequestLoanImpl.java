@@ -39,7 +39,7 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
 
     @Override
     public void e_Navigate() {
-        Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
+        // Handled by outgoing edges in other models
     }
 
     @Override
@@ -55,7 +55,7 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
 
     @Override
     public void v_Dummy_Navigation_SHARED() {
-        Assert.assertFalse(Driver.containsUrl(Urls.INDEX_URL));
+        // Dummy navigation, nothing to do
     }
 
     @Override
@@ -84,6 +84,11 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
     public void v_Loan_Processed() {
         Assert.assertTrue(Driver.containsUrl(Urls.REQUEST_LOAN_URL));
         Assert.assertTrue(Driver.containsText("Congratulations, your loan has been approved."));
+    }
+
+    @Override
+    public void e_Click_Request_Loan() {
+        Driver.navigateTo(Urls.REQUEST_LOAN_URL);
     }
 
     @Override

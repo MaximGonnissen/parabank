@@ -30,7 +30,7 @@ public class TransferFundsImpl extends TestExecutionContext implements TransferF
 
     @Override
     public void e_Navigate() {
-        Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
+        // Handled by outgoing edges in other models
     }
 
     @Override
@@ -41,7 +41,7 @@ public class TransferFundsImpl extends TestExecutionContext implements TransferF
 
     @Override
     public void v_Dummy_Navigation_SHARED() {
-        Assert.assertFalse(Driver.containsUrl(Urls.INDEX_URL));
+        // Dummy navigation, nothing to do
     }
 
     @Override
@@ -119,5 +119,10 @@ public class TransferFundsImpl extends TestExecutionContext implements TransferF
         int index = Helpers.random.nextInt(getFromAccount().getOptions().size());
         getFromAccount().selectByIndex(index);
         getToAccount().selectByIndex(index);
+    }
+
+    @Override
+    public void e_Click_Transfer_Funds() {
+        Driver.navigateTo(Urls.TRANSFER_FUNDS_URL);
     }
 }

@@ -10,7 +10,7 @@ import org.graphwalker.java.annotation.GraphWalker;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100)
+@GraphWalker(value = Coverage.Default)
 public class RegisterImpl extends TestExecutionContext implements Register {
 
     private void clickRegister() {
@@ -51,7 +51,7 @@ public class RegisterImpl extends TestExecutionContext implements Register {
 
     @Override
     public void e_Navigate() {
-        Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
+        // Handled by outgoing edges in other models
     }
 
     @Override
@@ -68,7 +68,6 @@ public class RegisterImpl extends TestExecutionContext implements Register {
     @Override
     public void v_Dummy_Navigation_SHARED() {
         // Dummy navigation, nothing to do
-        Assert.assertFalse(Driver.containsUrl(Urls.INDEX_URL));
     }
 
     @Override

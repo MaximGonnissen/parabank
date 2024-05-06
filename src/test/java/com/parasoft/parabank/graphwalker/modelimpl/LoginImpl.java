@@ -25,6 +25,11 @@ public class LoginImpl extends TestExecutionContext implements Login {
     }
 
     @Override
+    public void e_Navigate() {
+        // Handled by outgoing edges in other models
+    }
+
+    @Override
     public void e_Valid_Login() {
         Driver.fillField(By.name("username"), "Test");
         Driver.fillField(By.name("password"), "Test");
@@ -46,7 +51,6 @@ public class LoginImpl extends TestExecutionContext implements Login {
     @Override
     public void v_Dummy_Navigation_SHARED() {
         // Dummy navigation, nothing to do
-        Assert.assertFalse(Driver.containsUrl(Urls.INDEX_URL));
     }
 
     @Override

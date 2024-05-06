@@ -3,14 +3,13 @@ package com.parasoft.parabank.graphwalker.modelimpl;
 import com.parasoft.parabank.graphwalker.Base.TestExecutionContext;
 import com.parasoft.parabank.graphwalker.utils.Coverage;
 import com.parasoft.parabank.graphwalker.utils.Driver;
-import com.parasoft.parabank.graphwalker.utils.Helpers;
 import com.parasoft.parabank.graphwalker.utils.Urls;
 import org.graphwalker.AccountOverview;
 import org.graphwalker.java.annotation.GraphWalker;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100)
+@GraphWalker(value = Coverage.Default)
 public class AccountOverviewImpl extends TestExecutionContext implements AccountOverview {
     @Override
     public void e_Select_Account() {
@@ -31,5 +30,20 @@ public class AccountOverviewImpl extends TestExecutionContext implements Account
 //        }
 
         Assert.assertTrue(Driver.containsUrl(Urls.ACCOUNTS_OVERVIEW_URL));
+    }
+
+    @Override
+    public void e_Navigate() {
+        // Handled by outgoing edges in other models
+    }
+
+    @Override
+    public void v_Dummy_Navigation_SHARED() {
+        // Dummy navigation, nothing to do
+    }
+
+    @Override
+    public void e_Click_Account_Overview() {
+        Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
     }
 }

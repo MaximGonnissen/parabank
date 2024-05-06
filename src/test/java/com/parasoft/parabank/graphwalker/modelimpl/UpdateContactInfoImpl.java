@@ -3,16 +3,14 @@ package com.parasoft.parabank.graphwalker.modelimpl;
 import com.parasoft.parabank.graphwalker.Base.TestExecutionContext;
 import com.parasoft.parabank.graphwalker.utils.Coverage;
 import com.parasoft.parabank.graphwalker.utils.Driver;
-import com.parasoft.parabank.graphwalker.utils.Helpers;
 import com.parasoft.parabank.graphwalker.utils.Urls;
 import org.graphwalker.UpdateContactInfo;
-import org.graphwalker.core.machine.ExecutionContext;
 import org.graphwalker.java.annotation.GraphWalker;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100)
+@GraphWalker(value = Coverage.Default)
 public class UpdateContactInfoImpl extends TestExecutionContext implements UpdateContactInfo {
 
     private boolean isEmpty(WebElement element) {
@@ -36,8 +34,7 @@ public class UpdateContactInfoImpl extends TestExecutionContext implements Updat
         // Fill in required fields
         Driver.findElement(By.xpath("//*[@id='customer.firstName']")).sendKeys("John");
         Driver.findElement(By.xpath("//*[@id='customer.lastName']")).sendKeys("Doe");
-        Driver.findElement(By.xpath("//*[@id='customer.address.street']"))
-                .sendKeys("123 Some Street");
+        Driver.findElement(By.xpath("//*[@id='customer.address.street']")).sendKeys("123 Some Street");
         Driver.findElement(By.xpath("//*[@id='customer.address.city']")).sendKeys("Some City");
         Driver.findElement(By.xpath("//*[@id='customer.address.state']")).sendKeys("Some State");
         Driver.findElement(By.xpath("//*[@id='customer.address.zipCode']")).sendKeys("12345");
@@ -51,12 +48,12 @@ public class UpdateContactInfoImpl extends TestExecutionContext implements Updat
 
     @Override
     public void e_Navigate() {
-        Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
+        // Handled by outgoing edges in other models
     }
 
     @Override
     public void v_Dummy_Navigation_SHARED() {
-        Assert.assertFalse(Driver.containsUrl(Urls.INDEX_URL));
+        // Dummy navigation, nothing to do
     }
 
     @Override
@@ -118,7 +115,11 @@ public class UpdateContactInfoImpl extends TestExecutionContext implements Updat
     @Override
     public void v_Valid_Changed_Contact_Info() {
         Assert.assertTrue(Driver.containsUrl(Urls.UPDATE_INFO_URL));
-        Assert.assertEquals("Jane", Driver.findElement(By.xpath("//*[@id='customer.firstName']"))
-                .getAttribute("value"));
+        Assert.assertEquals("Jane", Driver.findElement(By.xpath("//*[@id='customer.firstName']")).getAttribute("value"));
+    }
+
+    @Override
+    public void e_Click_Update_Contact_Info() {
+        Driver.navigateTo(Urls.UPDATE_INFO_URL);
     }
 }

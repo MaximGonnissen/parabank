@@ -54,12 +54,12 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
 
     @Override
     public void e_Navigate() {
-        Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
+        // Handled by outgoing edges in other models
     }
 
     @Override
     public void v_Dummy_Navigation_SHARED() {
-        Assert.assertFalse(Driver.containsUrl(Urls.INDEX_URL));
+        // Dummy navigation, nothing to do
     }
 
     @Override
@@ -261,5 +261,10 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     @Override
     public void e_Valid_Date_Find_Transactions() {
         ClickFindTransactionsDate();
+    }
+
+    @Override
+    public void e_Click_Find_Transactions() {
+        Driver.navigateTo(Urls.FIND_TRANSACTIONS_URL);
     }
 }

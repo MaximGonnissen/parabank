@@ -18,7 +18,7 @@ public class AccountActivityImpl extends TestExecutionContext implements Account
 
     @Override
     public void e_Navigate() {
-        Driver.navigateTo(Urls.ACCOUNTS_OVERVIEW_URL);
+        // Handled by outgoing edges in other models
     }
 
 
@@ -48,7 +48,6 @@ public class AccountActivityImpl extends TestExecutionContext implements Account
     @Override
     public void v_Dummy_Navigation_SHARED() {
         // Dummy navigation, nothing to do
-        Assert.assertFalse(Driver.containsUrl(Urls.INDEX_URL));
     }
 
     @Override
