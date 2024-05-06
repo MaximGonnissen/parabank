@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Helpers {
     public static Random random = new Random();
+    public static Random unseededRandom = new Random(System.currentTimeMillis());
     public static boolean ensureLoggedIn() {
         Driver.navigateTo(Urls.BASE_URL);
 

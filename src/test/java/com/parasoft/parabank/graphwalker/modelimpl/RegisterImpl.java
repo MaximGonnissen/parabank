@@ -151,7 +151,7 @@ public class RegisterImpl extends TestExecutionContext implements Register {
         Driver.fillField(By.xpath("//*[@id='customer.address.zipCode']"), "12345");
         Driver.fillField(By.xpath("//*[@id='customer.phoneNumber']"), "1234567890");
         Driver.fillField(By.xpath("//*[@id='customer.ssn']"), "123456789");
-        Driver.fillField(By.xpath("//*[@id='customer.username']"), "johndoe " + Helpers.random.nextInt(100000));    // Randomised since username must be unique. Not ideal --> should use in-memory test database
+        Driver.fillField(By.xpath("//*[@id='customer.username']"), "johndoe " + Helpers.unseededRandom.nextInt(100000));    // Randomised since username must be unique. Not ideal --> should use in-memory test database
         Driver.fillField(By.xpath("//*[@id='customer.password']"), "password");
         Driver.fillField(By.xpath("//*[@id='repeatedPassword']"), "password");
     }
