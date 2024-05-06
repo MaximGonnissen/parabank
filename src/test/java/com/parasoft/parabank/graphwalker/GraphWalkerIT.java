@@ -6,7 +6,6 @@ import com.parasoft.parabank.graphwalker.utils.Helpers;
 import com.parasoft.parabank.graphwalker.utils.ResultHandler;
 import com.parasoft.parabank.graphwalker.utils.Urls;
 import com.parasoft.parabank.it.util.DriverFactory;
-import org.graphwalker.core.algorithm.DirectedChinesePostman;
 import org.graphwalker.core.generator.SingletonRandomGenerator;
 import org.graphwalker.core.machine.Machine;
 import org.graphwalker.core.statistics.Profiler;
@@ -84,15 +83,12 @@ public class GraphWalkerIT {
 
     @Test
     public void fullTest() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, AccountOverviewImpl.class, BillPayImpl.class, NavigationImpl.class, OpenNewAccountImpl.class, RegisterImpl.class, TransferFundsImpl.class, UpdateContactInfoImpl.class, AccountActivityImpl.class, RequestLoanImpl.class, FindTransactionsImpl.class);
-//        executor.getMachine().getCurrentContext().setPathGenerator(new DirectedChinesePostmanPath(new EdgeCoverage(100)));
+        Executor executor = new TestExecutor(LoginImpl.class, AccountOverviewImpl.class, AccountActivityImpl.class, TransferFundsImpl.class, BillPayImpl.class, FindTransactionsImpl.class, RequestLoanImpl.class, OpenNewAccountImpl.class, UpdateContactInfoImpl.class, RegisterImpl.class);
+        Result result = executor.execute(true);
 
-        new DirectedChinesePostman(executor.getMachine().getCurrentContext());
+        printProfilingInfo(executor.getMachine());
 
-        throw new IOException("Managed to create path!");
-
-//        Result result = executor.execute(true);
-//        Assert.assertTrue(ResultHandler.handleResult(result, false));
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
@@ -103,7 +99,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testAccountActivity() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, AccountOverviewImpl.class, AccountActivityImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, AccountOverviewImpl.class, AccountActivityImpl.class);
         Result result = executor.execute(true);
 
         printProfilingInfo(executor.getMachine());
@@ -119,7 +115,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testAccountOverview() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, AccountOverviewImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, AccountOverviewImpl.class);
         Result result = executor.execute(true);
 
         printProfilingInfo(executor.getMachine());
@@ -135,7 +131,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testBillPay() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, BillPayImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, BillPayImpl.class);
         Result result = executor.execute(true);
 
         printProfilingInfo(executor.getMachine());
@@ -151,7 +147,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testFindTransactions() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, FindTransactionsImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, FindTransactionsImpl.class);
         Result result = executor.execute(true);
 
         printProfilingInfo(executor.getMachine());
@@ -176,22 +172,6 @@ public class GraphWalkerIT {
     }
 
     /**
-     * <b>Navigation implementation integration test</b>
-     *
-     * @throws IOException if an I/O error occurs
-     * @see NavigationImpl
-     */
-    @Test
-    public void testNavigation() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class);
-        Result result = executor.execute(true);
-
-        printProfilingInfo(executor.getMachine());
-
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
-    }
-
-    /**
      * <b>Open New Account implementation integration test</b>
      *
      * @throws IOException if an I/O error occurs
@@ -199,7 +179,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testOpenNewAccount() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, OpenNewAccountImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, OpenNewAccountImpl.class);
         Result result = executor.execute(true);
 
         printProfilingInfo(executor.getMachine());
@@ -215,7 +195,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testRegister() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, RegisterImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, RegisterImpl.class);
         Result result = executor.execute(true);
 
         printProfilingInfo(executor.getMachine());
@@ -231,7 +211,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testRequestLoan() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, RequestLoanImpl.class, AccountActivityImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, RequestLoanImpl.class);
         Result result = executor.execute(true);
 
         printProfilingInfo(executor.getMachine());
@@ -247,7 +227,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testTransferFunds() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, TransferFundsImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, TransferFundsImpl.class);
         Result result = executor.execute(true);
 
         printProfilingInfo(executor.getMachine());
@@ -263,7 +243,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testUpdateContactInfo() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, UpdateContactInfoImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, UpdateContactInfoImpl.class);
         Result result = executor.execute(true);
 
         printProfilingInfo(executor.getMachine());
