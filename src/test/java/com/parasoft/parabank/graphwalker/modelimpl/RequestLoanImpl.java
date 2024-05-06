@@ -26,15 +26,15 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
 
     private void fillInformationValid() {
         clearInformation();
-        Driver.setField(LOAN_AMOUNT, "100");
-        Driver.setField(DOWN_PAYMENT, "100");
+        Driver.setField(LOAN_AMOUNT, "1");
+        Driver.setField(DOWN_PAYMENT, "1");
     }
 
     @Override
     public void v_Information_Filled_Valid() {
         Assert.assertTrue(Driver.containsUrl(Urls.REQUEST_LOAN_URL));
-        Assert.assertEquals("100", Driver.findElement(LOAN_AMOUNT).getAttribute("value"));
-        Assert.assertEquals("100", Driver.findElement(DOWN_PAYMENT).getAttribute("value"));
+        Assert.assertEquals("1", Driver.findElement(LOAN_AMOUNT).getAttribute("value"));
+        Assert.assertEquals("1", Driver.findElement(DOWN_PAYMENT).getAttribute("value"));
     }
 
     @Override
