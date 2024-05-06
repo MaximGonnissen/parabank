@@ -3,7 +3,6 @@ package com.parasoft.parabank.graphwalker.modelimpl;
 import com.parasoft.parabank.graphwalker.Base.TestExecutionContext;
 import com.parasoft.parabank.graphwalker.utils.Coverage;
 import com.parasoft.parabank.graphwalker.utils.Driver;
-import com.parasoft.parabank.graphwalker.utils.Helpers;
 import com.parasoft.parabank.graphwalker.utils.Urls;
 import org.graphwalker.BillPay;
 import org.graphwalker.java.annotation.GraphWalker;
@@ -13,7 +12,7 @@ import org.openqa.selenium.By;
 import java.util.Arrays;
 import java.util.List;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100)
+@GraphWalker(value = Coverage.QuickRandomEdgeCoverage100)
 public class BillPayImpl extends TestExecutionContext implements BillPay {
 
     private void sendPayment() {
@@ -25,6 +24,7 @@ public class BillPayImpl extends TestExecutionContext implements BillPay {
         Assert.assertTrue(Driver.containsUrl(Urls.BILL_PAY_URL));
         Assert.assertTrue(Driver.containsText("Bill Payment Complete"));
     }
+
 
     @Override
     public void e_Navigate() {
