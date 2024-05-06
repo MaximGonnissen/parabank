@@ -49,6 +49,7 @@ public class Driver {
     }
 
     public static void fillField(By by, String value) {
+        waitForElement(by);
         _driver.findElement(by).sendKeys(value);
     }
 
@@ -62,10 +63,12 @@ public class Driver {
     }
 
     public static void clickElement(By by) {
+        waitForElement(by);
         _driver.findElement(by).click();
     }
 
     public static void clearField(By by) {
+        waitForElement(by);
         _driver.findElement(by).clear();
     }
 
@@ -92,10 +95,12 @@ public class Driver {
     }
 
     public static WebElement findElement(By by) {
+        waitForElement(by);
         return _driver.findElement(by);
     }
 
     public static List<WebElement> findElements(By by) {
+        waitForElement(by);
         return _driver.findElements(by);
     }
 }
