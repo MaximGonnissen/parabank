@@ -45,11 +45,18 @@ public class Driver {
     }
 
     public static boolean containsText(String text) {
+        waitFor(100);
         return _driver.getPageSource().contains(text);
     }
 
     public static void fillField(By by, String value) {
         waitForElement(by);
+        _driver.findElement(by).sendKeys(value);
+    }
+
+    public static void setField(By by, String value) {
+        waitForElement(by);
+        _driver.findElement(by).clear();
         _driver.findElement(by).sendKeys(value);
     }
 
