@@ -86,7 +86,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
 
     @Override
     public void e_Click_Transaction() {
-        WebElement transaction = Driver.findElement(By.xpath("//*[@id='transactionTable']/tbody/tr[1]/td[2]/a"));
+        WebElement transaction = Driver.findElement(By.xpath("//*[@id=\"transactionTable\"]/tbody/tr/td[2]/a"));
         transaction.click();
     }
 
