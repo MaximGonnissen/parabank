@@ -72,8 +72,9 @@
         <guava.version>33.0.0-jre</guava.version>
         <snakeyaml.version>2.2</snakeyaml.version>
         <!-- Selenium 4.14 and later requires Java 11 -->
-        <selenium.version>4.13.0</selenium.version>
-        <selenium.latest.version>4.16.1</selenium.latest.version>
+        <selenium.version>4.20.0</selenium.version>
+        <selenium.latest.version>4.20.0</selenium.latest.version>
+<!--        <graphwalker.version>4.3.2</graphwalker.version>-->
         <graphwalker.version>4.3.3-SNAPSHOT</graphwalker.version>
     </properties>
     <dependencyManagement>
@@ -560,43 +561,6 @@
             <artifactId>graphwalker-websocket</artifactId>
             <version>${graphwalker.version}</version>
         </dependency>
-
-        <!-- Local GraphWalker -->
-<!--        <dependency>-->
-<!--            <groupId>org.graphwalker</groupId>-->
-<!--            <artifactId>graphwalker-core</artifactId>-->
-<!--            <version>4.3.3-SNAPSHOT</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${pom.basedir}/lib/graphwalker-core-4.3.3-SNAPSHOT.jar</systemPath>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.graphwalker</groupId>-->
-<!--            <artifactId>graphwalker-dsl</artifactId>-->
-<!--            <version>4.3.3-SNAPSHOT</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${pom.basedir}/lib/graphwalker-dsl-4.3.3-SNAPSHOT.jar</systemPath>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.graphwalker</groupId>-->
-<!--            <artifactId>graphwalker-io</artifactId>-->
-<!--            <version>4.3.3-SNAPSHOT</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${pom.basedir}/lib/graphwalker-io-4.3.3-SNAPSHOT.jar</systemPath>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.graphwalker</groupId>-->
-<!--            <artifactId>graphwalker-java</artifactId>-->
-<!--            <version>4.3.3-SNAPSHOT</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${pom.basedir}/lib/graphwalker-java-4.3.3-SNAPSHOT.jar</systemPath>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.graphwalker</groupId>-->
-<!--            <artifactId>graphwalker-websocket</artifactId>-->
-<!--            <version>4.3.3-SNAPSHOT</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${pom.basedir}/lib/graphwalker-websocket-4.3.3-SNAPSHOT.jar</systemPath>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
