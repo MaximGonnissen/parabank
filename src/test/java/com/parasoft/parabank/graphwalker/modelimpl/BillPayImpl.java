@@ -12,7 +12,7 @@ import org.openqa.selenium.By;
 import java.util.Arrays;
 import java.util.List;
 
-@GraphWalker(value = Coverage.QuickRandomEdgeCoverage100)
+@GraphWalker(value = Coverage.Default)
 public class BillPayImpl extends TestExecutionContext implements BillPay {
 
     private void sendPayment() {
