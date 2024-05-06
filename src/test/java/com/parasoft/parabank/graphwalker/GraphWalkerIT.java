@@ -8,6 +8,8 @@ import com.parasoft.parabank.graphwalker.utils.Urls;
 import com.parasoft.parabank.it.util.DriverFactory;
 import org.graphwalker.core.algorithm.DirectedChinesePostman;
 import org.graphwalker.core.generator.SingletonRandomGenerator;
+import org.graphwalker.core.machine.Machine;
+import org.graphwalker.core.statistics.Profiler;
 import org.graphwalker.java.test.Executor;
 import org.graphwalker.java.test.Result;
 import org.graphwalker.java.test.TestExecutor;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Timer;
 
 /**
  * <b>Integration tests for the GraphWalker model.</b>
@@ -32,6 +35,12 @@ public class GraphWalkerIT {
      */
     protected static final long SEED = 0;
     protected static Logger logger = LoggerFactory.getLogger(GraphWalkerIT.class);
+
+    public static void printProfilingInfo(Machine machine) {
+        Profiler profiler = machine.getProfiler();
+        logger.info("Total time: {}", profiler.getTotalExecutionTime());
+        logger.info("Total visited elements: {}", profiler.getTotalVisitCount());
+    }
 
     /**
      * <b>Before Class</b>
@@ -97,7 +106,10 @@ public class GraphWalkerIT {
     public void testAccountActivity() throws IOException {
         Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, AccountOverviewImpl.class, AccountActivityImpl.class);
         Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, true));
+
+        printProfilingInfo(executor.getMachine());
+
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
@@ -110,7 +122,10 @@ public class GraphWalkerIT {
     public void testAccountOverview() throws IOException {
         Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, AccountOverviewImpl.class);
         Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, true));
+
+        printProfilingInfo(executor.getMachine());
+
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
@@ -123,7 +138,10 @@ public class GraphWalkerIT {
     public void testBillPay() throws IOException {
         Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, BillPayImpl.class);
         Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, true));
+
+        printProfilingInfo(executor.getMachine());
+
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
@@ -136,7 +154,10 @@ public class GraphWalkerIT {
     public void testFindTransactions() throws IOException {
         Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, FindTransactionsImpl.class);
         Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, true));
+
+        printProfilingInfo(executor.getMachine());
+
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
@@ -149,7 +170,10 @@ public class GraphWalkerIT {
     public void testLogin() throws IOException {
         Executor executor = new TestExecutor(LoginImpl.class);
         Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, true));
+
+        printProfilingInfo(executor.getMachine());
+
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
@@ -162,7 +186,10 @@ public class GraphWalkerIT {
     public void testNavigation() throws IOException {
         Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class);
         Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, true));
+
+        printProfilingInfo(executor.getMachine());
+
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
@@ -175,7 +202,10 @@ public class GraphWalkerIT {
     public void testOpenNewAccount() throws IOException {
         Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, OpenNewAccountImpl.class);
         Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, true));
+
+        printProfilingInfo(executor.getMachine());
+
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
@@ -188,7 +218,10 @@ public class GraphWalkerIT {
     public void testRegister() throws IOException {
         Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, RegisterImpl.class);
         Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, true));
+
+        printProfilingInfo(executor.getMachine());
+
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
@@ -199,9 +232,12 @@ public class GraphWalkerIT {
      */
     @Test
     public void testRequestLoan() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, RequestLoanImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, RequestLoanImpl.class, AccountActivityImpl.class);
         Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, true));
+
+        printProfilingInfo(executor.getMachine());
+
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
@@ -214,7 +250,10 @@ public class GraphWalkerIT {
     public void testTransferFunds() throws IOException {
         Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, TransferFundsImpl.class);
         Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, true));
+
+        printProfilingInfo(executor.getMachine());
+
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 
     /**
@@ -227,6 +266,9 @@ public class GraphWalkerIT {
     public void testUpdateContactInfo() throws IOException {
         Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, UpdateContactInfoImpl.class);
         Result result = executor.execute(true);
-        Assert.assertTrue(ResultHandler.handleResult(result, true));
+
+        printProfilingInfo(executor.getMachine());
+
+        Assert.assertTrue(ResultHandler.handleResult(result, false));
     }
 }
