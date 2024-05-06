@@ -16,5 +16,6 @@ public class TestExecutionContext extends ExecutionContext {
     @BeforeElement
     public void setup() {
         logger.info("Entering: " + getCurrentElement().getName());
+        logger.info("Stop condition %: " + Math.round(getPathGenerator().getStopCondition().getFulfilment() * 100));
     }
 }
