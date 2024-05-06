@@ -38,6 +38,10 @@ public class GraphWalkerIT {
         Profiler profiler = machine.getProfiler();
         logger.info("Total time: {}", profiler.getTotalExecutionTime());
         logger.info("Total visited elements: {}", profiler.getTotalVisitCount());
+        logger.info("Submodel statistics:");
+        machine.getContexts().forEach(context -> logger.info("> {} ({}):", context.getModel().getName(), context.getPathGenerator().toString()));
+        machine.getContexts().forEach(context -> logger.info("\t|- Model time: {}", context.getProfiler().getTotalExecutionTime()));
+        machine.getContexts().forEach(context -> logger.info("\t|- Model visited elements: {}", context.getProfiler().getTotalVisitCount()));
     }
 
     /**
