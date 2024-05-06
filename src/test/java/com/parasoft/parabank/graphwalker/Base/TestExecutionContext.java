@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TestExecutionContext extends ExecutionContext {
-    protected static Logger logger = null;
+    protected Logger logger = null;
     public static final String MODEL_PATH = "org/graphwalker/parabank_model.json";
 
     public TestExecutionContext() {
