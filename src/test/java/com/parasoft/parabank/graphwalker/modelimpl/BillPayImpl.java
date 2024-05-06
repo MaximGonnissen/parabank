@@ -15,6 +15,16 @@ import java.util.List;
 @GraphWalker(value = Coverage.Default)
 public class BillPayImpl extends TestExecutionContext implements BillPay {
 
+    private static final By PAYEE_NAME = By.name("payee.name");
+    private static final By PAYEE_ADDRESS_STREET = By.name("payee.address.street");
+    private static final By PAYEE_ADDRESS_CITY = By.name("payee.address.city");
+    private static final By PAYEE_ADDRESS_STATE = By.name("payee.address.state");
+    private static final By PAYEE_ADDRESS_ZIP_CODE = By.name("payee.address.zipCode");
+    private static final By PAYEE_PHONE_NUMBER = By.name("payee.phoneNumber");
+    private static final By PAYEE_ACCOUNT_NUMBER = By.name("payee.accountNumber");
+    private static final By VERIFY_ACCOUNT = By.name("verifyAccount");
+    private static final By AMOUNT = By.name("amount");
+
     private void sendPayment() {
         Driver.findElement(By.xpath("//input[@type='submit']")).click();
     }
@@ -45,8 +55,8 @@ public class BillPayImpl extends TestExecutionContext implements BillPay {
     @Override
     public void e_Invalid_Input() {
         e_Fill_Correctly();
-        Driver.findElement(By.name("payee.accountNumber")).sendKeys("1a");
-        Driver.findElement(By.name("verifyAccount")).sendKeys("1a");
+        Driver.setField(PAYEE_ACCOUNT_NUMBER, "1a");
+        Driver.setField(VERIFY_ACCOUNT, "1a");
     }
 
     @Override
@@ -68,8 +78,8 @@ public class BillPayImpl extends TestExecutionContext implements BillPay {
     @Override
     public void e_Invalid_Account_Filled() {
         e_Fill_Correctly();
-        Driver.findElement(By.name("payee.accountNumber")).sendKeys("a");
-        Driver.findElement(By.name("verifyAccount")).sendKeys("a");
+        Driver.setField(PAYEE_ACCOUNT_NUMBER, "a");
+        Driver.setField(VERIFY_ACCOUNT, "a");
     }
 
     @Override
@@ -79,13 +89,6 @@ public class BillPayImpl extends TestExecutionContext implements BillPay {
 
     @Override
     public void v_Bill_Pay_SHARED() {
-//        if (getLastElement() == null) {
-//            // Assume start of an isolated test, log in and navigate
-//            Helpers.ensureLoggedIn();
-//            Driver.navigateTo(Urls.BILL_PAY_URL);
-//        }
-
-        // At bill pay page
         Assert.assertTrue(Driver.containsUrl(Urls.BILL_PAY_URL));
     }
 
@@ -101,15 +104,15 @@ public class BillPayImpl extends TestExecutionContext implements BillPay {
 
     @Override
     public void e_Invalid_Missing_Field() {
-        Driver.findElement(By.name("payee.name")).clear();
-        Driver.findElement(By.name("payee.accountNumber")).clear();
-        Driver.findElement(By.name("verifyAccount")).clear();
-        Driver.findElement(By.name("amount")).clear();
+        Driver.clearField(PAYEE_NAME);
+        Driver.clearField(PAYEE_ACCOUNT_NUMBER);
+        Driver.clearField(VERIFY_ACCOUNT);
+        Driver.clearField(AMOUNT);
     }
 
     @Override
     public void e_Invalid_Amount_Filled() {
-        Driver.findElement(By.name("amount")).sendKeys("a");
+        Driver.setField(AMOUNT, "a");
     }
 
     @Override
@@ -168,22 +171,22 @@ public class BillPayImpl extends TestExecutionContext implements BillPay {
 
     @Override
     public void e_Fill_Correctly() {
-        Driver.findElement(By.name("payee.name")).sendKeys("John Doe");
-        Driver.findElement(By.name("payee.address.street")).sendKeys("123 Some Street");
-        Driver.findElement(By.name("payee.address.city")).sendKeys("Some City");
-        Driver.findElement(By.name("payee.address.state")).sendKeys("Some State");
-        Driver.findElement(By.name("payee.address.zipCode")).sendKeys("12345");
-        Driver.findElement(By.name("payee.phoneNumber")).sendKeys("123-456-7890");
-        Driver.findElement(By.name("payee.accountNumber")).sendKeys("12345");
-        Driver.findElement(By.name("verifyAccount")).sendKeys("12345");
-        Driver.findElement(By.name("amount")).sendKeys("100");
+        Driver.setField(PAYEE_NAME, "John Doe");
+        Driver.setField(PAYEE_ADDRESS_STREET, "123 Some Street");
+        Driver.setField(PAYEE_ADDRESS_CITY, "Some City");
+        Driver.setField(PAYEE_ADDRESS_STATE, "Some State");
+        Driver.setField(PAYEE_ADDRESS_ZIP_CODE, "12345");
+        Driver.setField(PAYEE_PHONE_NUMBER, "123-456-7890");
+        Driver.setField(PAYEE_ACCOUNT_NUMBER, "12345");
+        Driver.setField(VERIFY_ACCOUNT, "12345");
+        Driver.setField(AMOUNT, "100");
     }
 
     @Override
     public void e_Invalid_Account_Mismatch() {
         e_Fill_Correctly();
-        Driver.findElement(By.name("payee.accountNumber")).sendKeys("12345");
-        Driver.findElement(By.name("verifyAccount")).sendKeys("54321");
+        Driver.setField(PAYEE_ACCOUNT_NUMBER, "12345");
+        Driver.setField(VERIFY_ACCOUNT, "54321");
     }
 
     @Override
