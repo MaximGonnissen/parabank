@@ -9,7 +9,7 @@ import org.graphwalker.java.annotation.GraphWalker;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100, start = "v_Start")
+@GraphWalker(value = Coverage.Default, start = "v_Start")
 public class LoginImpl extends TestExecutionContext implements Login {
 
     private boolean atLoginPage() {

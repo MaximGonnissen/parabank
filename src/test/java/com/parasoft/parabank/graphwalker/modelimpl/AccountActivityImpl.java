@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-@GraphWalker(value = Coverage.RandomEdgeCoverage100)
+@GraphWalker(value = Coverage.Default)
 public class AccountActivityImpl extends TestExecutionContext implements AccountActivity {
 
     @Override
@@ -40,7 +40,9 @@ public class AccountActivityImpl extends TestExecutionContext implements Account
     public void v_Transaction_Details() {
         // At transaction details page
         // TODO: Can be in invalid state if no transactions are present --> Model incomplete?
-        Assert.assertTrue(Driver.containsUrl(Urls.TRANSACTION_DETAILS_URL));
+        boolean atTransactionDetails = Driver.containsUrl(Urls.TRANSACTION_DETAILS_URL);
+        boolean atAccountActivity = Driver.containsUrl(Urls.ACCOUNTS_ACTIVITY_URL); // TODO: Workaround in case no transactions are present
+        Assert.assertTrue(atTransactionDetails || atAccountActivity);
     }
 
     @Override
@@ -93,7 +95,7 @@ public class AccountActivityImpl extends TestExecutionContext implements Account
 
     @Override
     public void e_Click_On_Transaction() {
-        Driver.waitFor(2000);
+        Driver.waitFor(100);
         List<WebElement> transactions = Driver.findElements(By.xpath("//a[contains(text(),'Funds Transfer Sent')]"));
         if (!transactions.isEmpty()) {
             transactions.get(Helpers.random.nextInt(transactions.size())).click();

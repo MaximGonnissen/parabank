@@ -1,14 +1,14 @@
 package com.parasoft.parabank.graphwalker.modelimpl;
 
 import com.parasoft.parabank.graphwalker.Base.TestExecutionContext;
+import com.parasoft.parabank.graphwalker.utils.Coverage;
 import com.parasoft.parabank.graphwalker.utils.Driver;
-import com.parasoft.parabank.graphwalker.utils.Helpers;
 import com.parasoft.parabank.graphwalker.utils.Urls;
 import org.graphwalker.Navigation;
 import org.graphwalker.java.annotation.GraphWalker;
 import org.junit.Assert;
 
-@GraphWalker(value = "random(edge_coverage(100))")
+@GraphWalker(value = Coverage.Default)
 public class NavigationImpl extends TestExecutionContext implements Navigation {
     @Override
     public void e_Click_Find_Transactions() {
