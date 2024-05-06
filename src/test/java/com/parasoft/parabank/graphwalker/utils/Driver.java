@@ -46,6 +46,9 @@ public class Driver {
 
     public static boolean containsText(String text) {
         waitFor(100);
+        if (!_driver.getPageSource().contains(text)) {
+            waitFor(200);
+        }
         return _driver.getPageSource().contains(text);
     }
 
