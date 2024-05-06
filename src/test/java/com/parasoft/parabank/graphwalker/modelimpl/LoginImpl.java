@@ -31,8 +31,8 @@ public class LoginImpl extends TestExecutionContext implements Login {
 
     @Override
     public void e_Valid_Login() {
-        Driver.fillField(By.name("username"), "Test");
-        Driver.fillField(By.name("password"), "Test");
+        Driver.setField(By.name("username"), "Test");
+        Driver.setField(By.name("password"), "Test");
         Driver.clickElement(By.xpath("//input[@value='Log In']"));
     }
 
@@ -43,8 +43,8 @@ public class LoginImpl extends TestExecutionContext implements Login {
 
     @Override
     public void e_Invalid_Login_Username() {
-        Driver.fillField(By.name("username"), "Invalid");
-        Driver.fillField(By.name("password"), "Test");
+        Driver.setField(By.name("username"), "Invalid");
+        Driver.setField(By.name("password"), "Test");
         Driver.clickElement(By.xpath("//input[@value='Log In']"));
     }
 
@@ -125,8 +125,8 @@ public class LoginImpl extends TestExecutionContext implements Login {
 
     @Override
     public void e_Invalid_Login_Password() {
-        Driver.fillField(By.name("username"), "Test");
-        Driver.fillField(By.name("password"), "Invalid");
+        Driver.setField(By.name("username"), "Test");
+        Driver.setField(By.name("password"), "Invalid");
         Driver.clickElement(By.xpath("//input[@value='Log In']"));
     }
 }

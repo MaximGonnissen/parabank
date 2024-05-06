@@ -97,8 +97,7 @@ public class UpdateContactInfoImpl extends TestExecutionContext implements Updat
     @Override
     public void e_Change_Valid_Contact_Info() {
         fillRequiredFields();
-        Driver.clearField(By.xpath("//*[@id='customer.firstName']"));
-        Driver.fillField(By.xpath("//*[@id='customer.firstName']"), "Jane");
+        Driver.setField(By.xpath("//*[@id='customer.firstName']"), "Jane");
     }
 
     @Override

@@ -45,8 +45,8 @@ public class RegisterImpl extends TestExecutionContext implements Register {
     @Override
     public void e_Invalid_Password_Mismatch() {
         e_Fill_Information_Correct();
-        Driver.fillField(By.xpath("//*[@id='customer.password']"), "password");
-        Driver.fillField(By.xpath("//*[@id='repeatedPassword']"), "password2");
+        Driver.setField(By.xpath("//*[@id='customer.password']"), "password");
+        Driver.setField(By.xpath("//*[@id='repeatedPassword']"), "password2");
     }
 
     @Override
@@ -56,12 +56,6 @@ public class RegisterImpl extends TestExecutionContext implements Register {
 
     @Override
     public void v_Register_SHARED() {
-//        if (getLastElement() == null) {
-//            // Assume start of an isolated test, log in and navigate
-//            Helpers.ensureLoggedIn();
-//            Driver.navigateTo(Urls.REGISTER_URL);
-//        }
-
         Assert.assertTrue(Driver.containsUrl(Urls.REGISTER_URL));
     }
 
@@ -142,17 +136,17 @@ public class RegisterImpl extends TestExecutionContext implements Register {
         // Clear all fields first
         clearFields();
 
-        Driver.fillField(By.xpath("//*[@id='customer.firstName']"), "John");
-        Driver.fillField(By.xpath("//*[@id='customer.lastName']"), "Doe");
-        Driver.fillField(By.xpath("//*[@id='customer.address.street']"), "123 Some Street");
-        Driver.fillField(By.xpath("//*[@id='customer.address.city']"), "Some City");
-        Driver.fillField(By.xpath("//*[@id='customer.address.state']"), "Some State");
-        Driver.fillField(By.xpath("//*[@id='customer.address.zipCode']"), "12345");
-        Driver.fillField(By.xpath("//*[@id='customer.phoneNumber']"), "1234567890");
-        Driver.fillField(By.xpath("//*[@id='customer.ssn']"), "123456789");
-        Driver.fillField(By.xpath("//*[@id='customer.username']"), "johndoe " + Helpers.unseededRandom.nextInt(100000));    // Randomised since username must be unique. Not ideal --> should use in-memory test database
-        Driver.fillField(By.xpath("//*[@id='customer.password']"), "password");
-        Driver.fillField(By.xpath("//*[@id='repeatedPassword']"), "password");
+        Driver.setField(By.xpath("//*[@id='customer.firstName']"), "John");
+        Driver.setField(By.xpath("//*[@id='customer.lastName']"), "Doe");
+        Driver.setField(By.xpath("//*[@id='customer.address.street']"), "123 Some Street");
+        Driver.setField(By.xpath("//*[@id='customer.address.city']"), "Some City");
+        Driver.setField(By.xpath("//*[@id='customer.address.state']"), "Some State");
+        Driver.setField(By.xpath("//*[@id='customer.address.zipCode']"), "12345");
+        Driver.setField(By.xpath("//*[@id='customer.phoneNumber']"), "1234567890");
+        Driver.setField(By.xpath("//*[@id='customer.ssn']"), "123456789");
+        Driver.setField(By.xpath("//*[@id='customer.username']"), "johndoe " + Helpers.unseededRandom.nextInt(100000));    // Randomised since username must be unique. Not ideal --> should use in-memory test database
+        Driver.setField(By.xpath("//*[@id='customer.password']"), "password");
+        Driver.setField(By.xpath("//*[@id='repeatedPassword']"), "password");
     }
 
     @Override

@@ -90,8 +90,7 @@ public class TransferFundsImpl extends TestExecutionContext implements TransferF
 
     @Override
     public void e_Valid_Amount() {
-        Driver.clearField(By.id("amount"));
-        Driver.fillField(By.id("amount"), "100");
+        Driver.setField(By.id("amount"), "100");
     }
 
     @Override
@@ -108,8 +107,7 @@ public class TransferFundsImpl extends TestExecutionContext implements TransferF
 
     @Override
     public void e_Invalid_Amount() {
-        Driver.clearField(By.id("amount"));
-        Driver.fillField(By.id("amount"), "a");
+        Driver.setField(By.id("amount"), "a");
         Driver.clickElement(By.xpath("//input[@value='Transfer']"));
         Driver.waitFor(100);
     }

@@ -20,24 +20,44 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     private static final String todayString = LocalDate.now().format(formatter);
 
+    private String getValidAccountId() {
+        // TODO: This is not good practice, and will need to be adjusted for different testing environments, but is necessary for now since the model does not account for an account not having transactions
+        return "14343";
+    }
+
+    private void EnsureValidAccountSelected() {
+        WebElement dropdown = Driver.findElement(By.xpath("//*[@id='accountId']"));
+        List<WebElement> options = dropdown.findElements(By.tagName("option"));
+        options.forEach(option -> {
+            if (option.getAttribute("value").equals(getValidAccountId())) {
+                option.click();
+            }
+        });
+    }
+
+    private void ClickFindTransactionsButton(WebElement button) {
+        EnsureValidAccountSelected();
+        button.click();
+    }
+
     private void ClickFindTransactionsId() {
         WebElement idFindTransactionsButton = Driver.findElement(By.xpath("//*[@id=\"rightPanel\"]/div/div/form/div[3]/button"));
-        idFindTransactionsButton.click();
+        ClickFindTransactionsButton(idFindTransactionsButton);
     }
 
     private void ClickFindTransactionsDate() {
         WebElement dateFindTransactionsButton = Driver.findElement(By.xpath("//*[@id=\"rightPanel\"]/div/div/form/div[5]/button"));
-        dateFindTransactionsButton.click();
+        ClickFindTransactionsButton(dateFindTransactionsButton);
     }
 
     private void ClickFindTransactionsDateRange() {
         WebElement dateRangeFindTransactionsButton = Driver.findElement(By.xpath("//*[@id=\"rightPanel\"]/div/div/form/div[7]/button"));
-        dateRangeFindTransactionsButton.click();
+        ClickFindTransactionsButton(dateRangeFindTransactionsButton);
     }
 
     private void ClickFindTransactionsAmount() {
         WebElement amountFindTransactionsButton = Driver.findElement(By.xpath("//*[@id=\"rightPanel\"]/div/div/form/div[9]/button"));
-        amountFindTransactionsButton.click();
+        ClickFindTransactionsButton(amountFindTransactionsButton);
     }
 
     private String getValidTransactionId() {
@@ -113,7 +133,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     public void e_Fill_Amount_Valid() {
         By amount = By.xpath("//*[@id='criteria.amount']");
         Driver.clearField(amount);
-        Driver.fillField(amount, "100");
+        Driver.setField(amount, "100");
     }
 
     @Override
@@ -131,9 +151,9 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
         By from = By.xpath("//*[@id='criteria.fromDate']");
         By to = By.xpath("//*[@id='criteria.toDate']");
         Driver.clearField(from);
-        Driver.fillField(from, "01-01-2022");
+        Driver.setField(from, "01-01-2022");
         Driver.clearField(to);
-        Driver.fillField(to, "01-01-2050");
+        Driver.setField(to, "01-01-2050");
     }
 
     @Override
@@ -154,7 +174,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     public void e_Fill_Id_Valid() {
         By id = By.xpath("//*[@id='criteria.transactionId']");
         Driver.clearField(id);
-        Driver.fillField(id, getValidTransactionId());
+        Driver.setField(id, getValidTransactionId());
     }
 
     @Override
@@ -173,7 +193,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     public void e_Fill_Amount_Invalid() {
         By amount = By.xpath("//*[@id='criteria.amount']");
         Driver.clearField(amount);
-        Driver.fillField(amount, "abc");
+        Driver.setField(amount, "abc");
     }
 
     @Override
@@ -181,9 +201,9 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
         By from = By.xpath("//*[@id='criteria.fromDate']");
         By to = By.xpath("//*[@id='criteria.toDate']");
         Driver.clearField(from);
-        Driver.fillField(from, "a12");
+        Driver.setField(from, "a12");
         Driver.clearField(to);
-        Driver.fillField(to, "34b");
+        Driver.setField(to, "34b");
     }
 
     @Override
@@ -217,7 +237,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     public void e_Fill_Id_Invalid() {
         By id = By.xpath("//*[@id='criteria.transactionId']");
         Driver.clearField(id);
-        Driver.fillField(id, "abc");
+        Driver.setField(id, "abc");
     }
 
     @Override
@@ -238,7 +258,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     public void e_Fill_Date_Invalid() {
         By date = By.xpath("//*[@id='criteria.onDate']");
         Driver.clearField(date);
-        Driver.fillField(date, "abc");
+        Driver.setField(date, "abc");
     }
 
     @Override
