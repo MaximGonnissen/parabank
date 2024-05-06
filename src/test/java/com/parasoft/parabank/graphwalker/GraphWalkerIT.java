@@ -95,7 +95,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testAccountActivity() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, AccountActivityImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, AccountActivityImpl.class);
         Result result = executor.execute(true);
         Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
@@ -108,7 +108,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testAccountOverview() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, AccountOverviewImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, AccountOverviewImpl.class);
         Result result = executor.execute(true);
         Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
@@ -121,7 +121,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testBillPay() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, BillPayImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, BillPayImpl.class);
         Result result = executor.execute(true);
         Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
@@ -130,12 +130,11 @@ public class GraphWalkerIT {
      * <b>Find Transactions implementation integration test</b>
      *
      * @throws IOException if an I/O error occurs
-     *                                         TODO: Needs model rework
      * @see FindTransactionsImpl
      */
     @Test
     public void testFindTransactions() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, FindTransactionsImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, FindTransactionsImpl.class);
         Result result = executor.execute(true);
         Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
@@ -174,7 +173,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testOpenNewAccount() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, OpenNewAccountImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, OpenNewAccountImpl.class);
         Result result = executor.execute(true);
         Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
@@ -187,7 +186,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testRegister() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, RegisterImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, RegisterImpl.class);
         Result result = executor.execute(true);
         Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
@@ -196,12 +195,11 @@ public class GraphWalkerIT {
      * <b>Request Loan implementation integration test</b>
      *
      * @throws IOException if an I/O error occurs
-     *                                         TODO: Needs model rework
      * @see RequestLoanImpl
      */
     @Test
     public void testRequestLoan() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, RequestLoanImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, RequestLoanImpl.class);
         Result result = executor.execute(true);
         Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
@@ -214,7 +212,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testTransferFunds() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, TransferFundsImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, TransferFundsImpl.class);
         Result result = executor.execute(true);
         Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
@@ -227,7 +225,7 @@ public class GraphWalkerIT {
      */
     @Test
     public void testUpdateContactInfo() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, UpdateContactInfoImpl.class);
+        Executor executor = new TestExecutor(LoginImpl.class, NavigationImpl.class, UpdateContactInfoImpl.class);
         Result result = executor.execute(true);
         Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
