@@ -132,7 +132,6 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     @Override
     public void e_Fill_Amount_Valid() {
         By amount = By.xpath("//*[@id='criteria.amount']");
-        Driver.clearField(amount);
         Driver.setField(amount, "100");
     }
 
@@ -150,9 +149,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     public void e_Fill_Date_Range_Valid() {
         By from = By.xpath("//*[@id='criteria.fromDate']");
         By to = By.xpath("//*[@id='criteria.toDate']");
-        Driver.clearField(from);
         Driver.setField(from, "01-01-2022");
-        Driver.clearField(to);
         Driver.setField(to, "01-01-2050");
     }
 
@@ -173,7 +170,6 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     @Override
     public void e_Fill_Id_Valid() {
         By id = By.xpath("//*[@id='criteria.transactionId']");
-        Driver.clearField(id);
         Driver.setField(id, getValidTransactionId());
     }
 
@@ -192,7 +188,6 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     @Override
     public void e_Fill_Amount_Invalid() {
         By amount = By.xpath("//*[@id='criteria.amount']");
-        Driver.clearField(amount);
         Driver.setField(amount, "abc");
     }
 
@@ -200,9 +195,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     public void e_Fill_Date_Range_Invalid() {
         By from = By.xpath("//*[@id='criteria.fromDate']");
         By to = By.xpath("//*[@id='criteria.toDate']");
-        Driver.clearField(from);
         Driver.setField(from, "a12");
-        Driver.clearField(to);
         Driver.setField(to, "34b");
     }
 
@@ -222,8 +215,8 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
 
     @Override
     public void e_Fill_Date_Valid() {
-        WebElement date = Driver.findElement(By.xpath("//*[@id='criteria.onDate']"));
-        date.sendKeys(todayString);
+        By date = By.xpath("//*[@id='criteria.onDate']");
+        Driver.setField(date, todayString);
     }
 
     @Override
@@ -236,7 +229,6 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     @Override
     public void e_Fill_Id_Invalid() {
         By id = By.xpath("//*[@id='criteria.transactionId']");
-        Driver.clearField(id);
         Driver.setField(id, "abc");
     }
 
@@ -257,7 +249,6 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     @Override
     public void e_Fill_Date_Invalid() {
         By date = By.xpath("//*[@id='criteria.onDate']");
-        Driver.clearField(date);
         Driver.setField(date, "abc");
     }
 
