@@ -683,7 +683,7 @@
             <plugin>
                 <groupId>org.graphwalker</groupId>
                 <artifactId>graphwalker-maven-plugin</artifactId>
-                <version>${graphwalker.version}</version>
+                <version>4.3.2</version>
                 <!-- Bind goals to the default lifecycle -->
                 <executions>
                     <execution>
