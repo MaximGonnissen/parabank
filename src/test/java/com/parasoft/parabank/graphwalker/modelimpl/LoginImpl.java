@@ -9,7 +9,7 @@ import org.graphwalker.java.annotation.GraphWalker;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
-@GraphWalker(value = Coverage.Default, start = "v_Start")
+@GraphWalker(value = Coverage.DirectedChinesePostmanCoverage, start = "v_Start")
 public class LoginImpl extends TestExecutionContext implements Login {
 
     private boolean atLoginPage() {
@@ -24,10 +24,10 @@ public class LoginImpl extends TestExecutionContext implements Login {
         Assert.assertTrue(Driver.containsText(expected));
     }
 
-    @Override
-    public void e_Navigate() {
-        // Handled by outgoing edges in other models
-    }
+//    @Override
+//    public void e_Navigate() {
+//        // Handled by outgoing edges in other models
+//    }
 
     @Override
     public void e_Valid_Login() {

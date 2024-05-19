@@ -32,10 +32,10 @@ public class AccountOverviewImpl extends TestExecutionContext implements Account
         Assert.assertTrue(Driver.containsUrl(Urls.ACCOUNTS_OVERVIEW_URL));
     }
 
-    @Override
-    public void e_Navigate() {
-        // Handled by outgoing edges in other models
-    }
+//    @Override
+//    public void e_Navigate() {
+//        // Handled by outgoing edges in other models
+//    }
 
     @Override
     public void v_Dummy_Navigation_SHARED() {

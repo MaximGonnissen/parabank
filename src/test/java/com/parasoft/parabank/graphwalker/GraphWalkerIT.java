@@ -12,6 +12,7 @@ import org.graphwalker.core.statistics.Profiler;
 import org.graphwalker.java.test.Executor;
 import org.graphwalker.java.test.Result;
 import org.graphwalker.java.test.TestExecutor;
+import org.graphwalker.java.test.UnifiedTestExecutor;
 import org.junit.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,7 +86,7 @@ public class GraphWalkerIT {
 
     @Test
     public void fullTest() throws IOException {
-        Executor executor = new TestExecutor(LoginImpl.class, AccountOverviewImpl.class, AccountActivityImpl.class, TransferFundsImpl.class, BillPayImpl.class, FindTransactionsImpl.class, RequestLoanImpl.class, OpenNewAccountImpl.class, UpdateContactInfoImpl.class, RegisterImpl.class);
+        Executor executor = new UnifiedTestExecutor(LoginImpl.class, AccountOverviewImpl.class, AccountActivityImpl.class, TransferFundsImpl.class, BillPayImpl.class, FindTransactionsImpl.class, RequestLoanImpl.class, OpenNewAccountImpl.class, UpdateContactInfoImpl.class, RegisterImpl.class);
         Result result = executor.execute(true);
 
         printProfilingInfo(executor.getMachine());

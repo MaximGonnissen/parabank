@@ -23,10 +23,10 @@ public class OpenNewAccountImpl extends TestExecutionContext implements OpenNewA
         Assert.assertEquals("SAVINGS", select.getFirstSelectedOption().getText());
     }
 
-    @Override
-    public void e_Navigate() {
-        // Handled by outgoing edges in other models
-    }
+//    @Override
+//    public void e_Navigate() {
+//        // Handled by outgoing edges in other models
+//    }
 
     @Override
     public void v_Account_Activity_SHARED() {

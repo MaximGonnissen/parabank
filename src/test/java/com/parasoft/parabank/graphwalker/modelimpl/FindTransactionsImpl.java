@@ -11,14 +11,17 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @GraphWalker(value = Coverage.Default)
 public class FindTransactionsImpl extends TestExecutionContext implements FindTransactions {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-    private static final String todayString = LocalDate.now().format(formatter);
+
+    // UTC now
+    private static final String todayString = OffsetDateTime.now(ZoneOffset.UTC).format(formatter);
 
     private String getValidAccountId() {
         // TODO: This is not good practice, and will need to be adjusted for different testing environments, but is necessary for now since the model does not account for an account not having transactions
@@ -33,6 +36,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
                 option.click();
             }
         });
+        Driver.waitFor(50);
     }
 
     private void ClickFindTransactionsButton(WebElement button) {
