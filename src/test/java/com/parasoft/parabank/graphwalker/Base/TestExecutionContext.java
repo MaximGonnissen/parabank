@@ -1,5 +1,6 @@
 package com.parasoft.parabank.graphwalker.Base;
 
+import com.parasoft.parabank.graphwalker.utils.Driver;
 import org.graphwalker.core.generator.UnifiedDummyPathGenerator;
 import org.graphwalker.core.machine.ExecutionContext;
 import org.graphwalker.java.annotation.BeforeElement;
@@ -23,5 +24,6 @@ public class TestExecutionContext extends ExecutionContext {
             logger.info("Entering: " + getCurrentElement().getName());
         }
         logger.info("Stop condition %: " + Math.round(getPathGenerator().getStopCondition().getFulfilment() * 100));
+        Driver.waitFor(50);    // Wait for 100ms to make sure stuff is a bit less flaky
     }
 }
