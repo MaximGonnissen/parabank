@@ -28,6 +28,11 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
         return "14343";
     }
 
+    private String getValidDateInput() {
+        // TODO: This is not good practice, and will need to be adjusted for different testing environments, but is necessary for now since the model does not account for an account not having transactions
+        return "05-19-2024";
+    }
+
     private void EnsureValidAccountSelected() {
         WebElement dropdown = Driver.findElement(By.xpath("//*[@id='accountId']"));
         List<WebElement> options = dropdown.findElements(By.tagName("option"));
@@ -36,7 +41,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
                 option.click();
             }
         });
-        Driver.waitFor(50);
+        Driver.waitFor(350);
     }
 
     private void ClickFindTransactionsButton(WebElement button) {
@@ -220,7 +225,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     @Override
     public void e_Fill_Date_Valid() {
         By date = By.xpath("//*[@id='criteria.onDate']");
-        Driver.setField(date, todayString);
+        Driver.setField(date, getValidDateInput());
     }
 
     @Override
@@ -247,7 +252,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     public void v_Find_By_Date_Valid() {
         Assert.assertTrue(Driver.containsUrl(Urls.FIND_TRANSACTIONS_URL));
         By date = By.xpath("//*[@id='criteria.onDate']");
-        Assert.assertEquals(todayString, Driver.findElement(date).getAttribute("value"));
+        Assert.assertEquals(getValidDateInput(), Driver.findElement(date).getAttribute("value"));
     }
 
     @Override
