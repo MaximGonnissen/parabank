@@ -38,7 +38,9 @@ public class GraphWalkerBenchmarkIT {
     protected static final long SEED = 0;
     protected static final String BENCHMARK_PATH = "C:\\Users\\Kunne\\PycharmProjects\\thesisBenchmarkAnalysis\\results\\parabank_benchmark_edge_coverage";
     protected static final boolean SKIP_SUCCESSFUL_TESTS = true;
-    protected static final int RUN_LIMIT = 5;
+    protected static final int RUN_LIMIT = Integer.MAX_VALUE;
+    protected static final int MAX_TESTS = Integer.MAX_VALUE;
+    protected static final boolean FORCE_HEADLESS_DRIVER = true;
     protected static Logger logger = LoggerFactory.getLogger(GraphWalkerBenchmarkIT.class);
 
     @Parameter
@@ -46,7 +48,7 @@ public class GraphWalkerBenchmarkIT {
 
     @Parameters(name = "{0}")
     public static List<LateInitBenchmarkPath> data() {
-        return BenchmarkPathParser.getLateInitBenchmarkPaths(BENCHMARK_PATH, RUN_LIMIT).stream().filter(lateInitBenchmarkPath -> SKIP_SUCCESSFUL_TESTS && !doTestResultExistsANDSuccess(lateInitBenchmarkPath.pathFile)).collect(Collectors.toList());
+        return BenchmarkPathParser.getLateInitBenchmarkPaths(BENCHMARK_PATH, RUN_LIMIT).stream().filter(lateInitBenchmarkPath -> SKIP_SUCCESSFUL_TESTS && !doTestResultExistsANDSuccess(lateInitBenchmarkPath.pathFile)).limit(MAX_TESTS).collect(Collectors.toList());
     }
 
 
@@ -103,7 +105,7 @@ public class GraphWalkerBenchmarkIT {
      */
     @Before
     public void driverSetup() {
-        Driver.setDriver(DriverFactory.getDriver("Chrome"));
+        Driver.setDriver(DriverFactory.getDriver("Chrome", FORCE_HEADLESS_DRIVER));
         Driver.getDriver().get(Urls.BASE_URL);
         Driver.getDriver().manage().window().maximize();
         Helpers.seedRandom(SEED);
