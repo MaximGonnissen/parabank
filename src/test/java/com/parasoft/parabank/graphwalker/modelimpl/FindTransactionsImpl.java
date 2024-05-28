@@ -25,12 +25,12 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
 
     private String getValidAccountId() {
         // TODO: This is not good practice, and will need to be adjusted for different testing environments, but is necessary for now since the model does not account for an account not having transactions
-        return "14343";
+        return "13566";
     }
 
     private String getValidDateInput() {
         // TODO: This is not good practice, and will need to be adjusted for different testing environments, but is necessary for now since the model does not account for an account not having transactions
-        return "05-19-2024";
+        return "05-28-2024";
     }
 
     private void EnsureValidAccountSelected() {

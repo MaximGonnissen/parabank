@@ -18,6 +18,7 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
     private static final By DOWN_PAYMENT = By.xpath("//*[@id=\"downPayment\"]");
     private static final By FROM_ACCOUNT = By.xpath("//*[@id=\"fromAccountId\"]");
     private static final By APPLY = By.xpath("//*[@id=\"rightPanel\"]/div/div/form/table/tbody/tr[4]/td[2]/input");
+    private static final String VALUE_TOO_HIGH = "1000000000";
 
     private void clearInformation() {
         Driver.clearField(LOAN_AMOUNT);
@@ -94,13 +95,13 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
     @Override
     public void v_Insufficient_Funds() {
         Assert.assertTrue(Driver.containsUrl(Urls.REQUEST_LOAN_URL));
-        Assert.assertEquals("1000000", Driver.findElement(DOWN_PAYMENT).getAttribute("value"));
+        Assert.assertEquals(VALUE_TOO_HIGH, Driver.findElement(DOWN_PAYMENT).getAttribute("value"));
     }
 
     @Override
     public void v_Loan_Too_High() {
         Assert.assertTrue(Driver.containsUrl(Urls.REQUEST_LOAN_URL));
-        Assert.assertEquals("1000000", Driver.findElement(LOAN_AMOUNT).getAttribute("value"));
+        Assert.assertEquals(VALUE_TOO_HIGH, Driver.findElement(LOAN_AMOUNT).getAttribute("value"));
     }
 
     @Override
@@ -111,7 +112,7 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
     @Override
     public void e_Loan_Too_High() {
         fillInformationValid();
-        Driver.setField(LOAN_AMOUNT, "1000000");
+        Driver.setField(LOAN_AMOUNT, VALUE_TOO_HIGH);
     }
 
     @Override
@@ -123,7 +124,7 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
     @Override
     public void v_Loan_Too_High_Error() {
         Assert.assertTrue(Driver.containsUrl(Urls.REQUEST_LOAN_URL));
-        Assert.assertTrue(Driver.containsText("We cannot grant a loan in that amount with your available funds.") || Driver.containsText("You do not have sufficient funds for the given down payment."));
+        Assert.assertTrue(Driver.containsText("We cannot grant a loan in that amount with your available funds."));
         // Accepts both errors, since tests are otherwise flaky due to an unpredictable account being selected,
         // which might not have any funds / might not be a fresh account.
     }
@@ -136,7 +137,7 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
     @Override
     public void e_Insufficient_Funds() {
         fillInformationValid();
-        Driver.setField(DOWN_PAYMENT, "1000000");
+        Driver.setField(DOWN_PAYMENT, VALUE_TOO_HIGH);
     }
 
     @Override
