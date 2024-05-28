@@ -24,24 +24,29 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RunWith(value = Parameterized.class)
 public class GraphWalkerBenchmarkIT {
     protected static final long SEED = 0;
-    protected static final String BENCHMARK_PATH = "src/test/resources/org/graphwalker/benchmark_generations/benchmark_edge_coverage";
+    protected static final String BENCHMARK_PATH = "C:\\Users\\Kunne\\PycharmProjects\\thesisBenchmarkAnalysis\\results\\parabank_benchmark_edge_coverage";
+    protected static final boolean SKIP_SUCCESSFUL_TESTS = true;
+    protected static final int RUN_LIMIT = 5;
     protected static Logger logger = LoggerFactory.getLogger(GraphWalkerBenchmarkIT.class);
+
     @Parameter
     public LateInitBenchmarkPath lateInitBenchmarkPath;
 
     @Parameters(name = "{0}")
     public static List<LateInitBenchmarkPath> data() {
-        return BenchmarkPathParser.getLateInitBenchmarkPaths(BENCHMARK_PATH);
+        return BenchmarkPathParser.getLateInitBenchmarkPaths(BENCHMARK_PATH, RUN_LIMIT).stream().filter(lateInitBenchmarkPath -> SKIP_SUCCESSFUL_TESTS && !doTestResultExistsANDSuccess(lateInitBenchmarkPath.pathFile)).collect(Collectors.toList());
     }
 
 
@@ -60,6 +65,36 @@ public class GraphWalkerBenchmarkIT {
             logger.info("Skipping GraphWalker benchmark tests...");
             Assume.assumeFalse(true);
         }
+    }
+
+    @BeforeClass
+    public static void checkBenchmarkPath() {
+        if (!BenchmarkPathParser.isValidBenchmarkPath(BENCHMARK_PATH)) {
+            logger.error("Invalid benchmark path: {}", BENCHMARK_PATH);
+            logger.info("Skipping GraphWalker benchmark tests...");
+            Assume.assumeFalse(true);
+        }
+    }
+
+    public static boolean doTestResultExistsANDSuccess(File pathFile) {
+        File directory = pathFile.getParentFile();
+        String fileName = pathFile.getName().replace("_path", "_test_results");
+        File file = new File(directory, fileName);
+        if (!file.exists()) {
+            return false;
+        }
+
+        try (FileReader reader = new FileReader(file)) {
+            JsonObject resultJson = JsonParser.parseReader(reader).getAsJsonObject();
+            if (resultJson.has("failures")) {
+                return false;
+            }
+        } catch (IOException e) {
+            logger.error("Could not read results from file: {}", e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
     /**
