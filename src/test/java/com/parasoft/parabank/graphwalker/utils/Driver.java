@@ -8,6 +8,11 @@ import java.util.List;
 
 public class Driver {
     protected static WebDriver _driver;
+    protected static long timeSpentWaiting = 0;
+
+    public static void resetTimeSpentWaiting() {
+        timeSpentWaiting = 0;
+    }
 
     public static void setDriver(WebDriver driver) {
         _driver = driver;
@@ -88,6 +93,7 @@ public class Driver {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        timeSpentWaiting += ms;
     }
 
     public static void refresh() {
@@ -112,5 +118,9 @@ public class Driver {
     public static List<WebElement> findElements(By by) {
         waitForElement(by);
         return _driver.findElements(by);
+    }
+
+    public static long getTimeSpentWaiting() {
+        return timeSpentWaiting;
     }
 }
