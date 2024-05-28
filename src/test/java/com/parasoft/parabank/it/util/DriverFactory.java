@@ -30,6 +30,10 @@ public final class DriverFactory {
     }
 
     public static WebDriver getDriver(String browserType) {
+        return getDriver(browserType, false);
+    }
+
+    public static WebDriver getDriver(String browserType, boolean forceHeadless) {
         String browser = browserType.trim();
         if (browser.equalsIgnoreCase("Firefox")) { //$NON-NLS-1$
             FirefoxOptions options = new FirefoxOptions();
@@ -64,8 +68,9 @@ public final class DriverFactory {
             return new SafariDriver();
         }
         ChromeOptions options = new ChromeOptions();
-        if (GraphicsEnvironment.isHeadless()) {
+        if (GraphicsEnvironment.isHeadless() || forceHeadless) {
             options.addArguments("--headless"); //$NON-NLS-1$
+            options.addArguments("--disable-gpu");
         }
         return new ChromeDriver(options);
     }
