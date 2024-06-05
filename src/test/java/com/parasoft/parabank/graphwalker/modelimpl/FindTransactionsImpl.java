@@ -20,17 +20,18 @@ import java.util.List;
 public class FindTransactionsImpl extends TestExecutionContext implements FindTransactions {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 
-    // UTC now
     private static final String todayString = OffsetDateTime.now(ZoneOffset.UTC).format(formatter);
 
     private String getValidAccountId() {
         // TODO: This is not good practice, and will need to be adjusted for different testing environments, but is necessary for now since the model does not account for an account not having transactions
+        // Note that it *seems* 13566 is always the account of the first account created after cleaning the database
+        // using the admin interface.
         return "13566";
     }
 
     private String getValidDateInput() {
         // TODO: This is not good practice, and will need to be adjusted for different testing environments, but is necessary for now since the model does not account for an account not having transactions
-        return "05-28-2024";
+        return todayString;
     }
 
     private void EnsureValidAccountSelected() {
