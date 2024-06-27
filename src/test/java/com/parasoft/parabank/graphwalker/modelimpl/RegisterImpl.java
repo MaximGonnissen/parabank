@@ -31,10 +31,19 @@ public class RegisterImpl extends TestExecutionContext implements Register {
         Driver.clearField(By.xpath("//*[@id='repeatedPassword']"));
     }
 
+    private void ensureLoggedInDefaultAccount() {
+        Driver.getDriver().get(Urls.LOGOUT_URL);
+        Driver.setField(By.name("username"), "Test");
+        Driver.setField(By.name("password"), "Test");
+        Driver.clickElement(By.xpath("//input[@value='Log In']"));
+    }
+
     @Override
     public void v_Registration_Complete() {
         Assert.assertTrue(Driver.containsUrl(Urls.REGISTER_URL));
         Assert.assertTrue(Driver.containsText("Your account was created successfully. You are now logged in."));
+        Driver.waitFor(100);
+        ensureLoggedInDefaultAccount();
     }
 
     @Override

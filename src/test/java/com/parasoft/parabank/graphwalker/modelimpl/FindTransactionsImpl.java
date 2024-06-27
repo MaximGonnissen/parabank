@@ -20,12 +20,18 @@ import java.util.List;
 public class FindTransactionsImpl extends TestExecutionContext implements FindTransactions {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 
-    // UTC now
     private static final String todayString = OffsetDateTime.now(ZoneOffset.UTC).format(formatter);
 
     private String getValidAccountId() {
         // TODO: This is not good practice, and will need to be adjusted for different testing environments, but is necessary for now since the model does not account for an account not having transactions
-        return "14343";
+        // Note that it *seems* 13566 is always the account of the first account created after cleaning the database
+        // using the admin interface.
+        return "13566";
+    }
+
+    private String getValidDateInput() {
+        // TODO: This is not good practice, and will need to be adjusted for different testing environments, but is necessary for now since the model does not account for an account not having transactions
+        return todayString;
     }
 
     private void EnsureValidAccountSelected() {
@@ -36,7 +42,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
                 option.click();
             }
         });
-        Driver.waitFor(50);
+        Driver.waitFor(350);
     }
 
     private void ClickFindTransactionsButton(WebElement button) {
@@ -220,7 +226,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     @Override
     public void e_Fill_Date_Valid() {
         By date = By.xpath("//*[@id='criteria.onDate']");
-        Driver.setField(date, todayString);
+        Driver.setField(date, getValidDateInput());
     }
 
     @Override
@@ -247,7 +253,7 @@ public class FindTransactionsImpl extends TestExecutionContext implements FindTr
     public void v_Find_By_Date_Valid() {
         Assert.assertTrue(Driver.containsUrl(Urls.FIND_TRANSACTIONS_URL));
         By date = By.xpath("//*[@id='criteria.onDate']");
-        Assert.assertEquals(todayString, Driver.findElement(date).getAttribute("value"));
+        Assert.assertEquals(getValidDateInput(), Driver.findElement(date).getAttribute("value"));
     }
 
     @Override
