@@ -86,7 +86,6 @@ public class RegisterImpl extends TestExecutionContext implements Register {
     @Override
     public void v_Information_Filled() {
         Assert.assertTrue(Driver.containsUrl(Urls.REGISTER_URL));
-        // TODO: Assert that all fields are filled?
     }
 
     @Override
@@ -99,7 +98,6 @@ public class RegisterImpl extends TestExecutionContext implements Register {
     @Override
     public void v_Missing_Field() {
         Assert.assertTrue(Driver.containsUrl(Urls.REGISTER_URL));
-        // TODO: Assert that some field(s) are missing?
     }
 
     @Override
@@ -142,7 +140,6 @@ public class RegisterImpl extends TestExecutionContext implements Register {
 
     @Override
     public void e_Fill_Information_Correct() {
-        // Clear all fields first
         clearFields();
 
         Driver.setField(By.xpath("//*[@id='customer.firstName']"), "John");
