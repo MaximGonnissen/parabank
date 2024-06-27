@@ -26,6 +26,8 @@ import java.net.URLConnection;
  * <b>Integration tests for the GraphWalker model.</b>
  * <p>These tests run implementations of the GraphWalker model to test the ParaBank application, and verify that the
  * model is correct.</p>
+ * <p>NOTE: You can change the algorithms used for testing in com/parasoft/parabank/graphwalker/modelimpl, in the
+ * respective implementation classes in their GraphWalker annotation.</p>
  */
 public class GraphWalkerIT {
     /**
@@ -34,6 +36,7 @@ public class GraphWalkerIT {
      */
     protected static final long SEED = 0;
     protected static Logger logger = LoggerFactory.getLogger(GraphWalkerIT.class);
+    protected static boolean forceHeadless = true;
 
     public static void printProfilingInfo(Machine machine) {
         Profiler profiler = machine.getProfiler();
@@ -64,15 +67,18 @@ public class GraphWalkerIT {
     /**
      * <b>Before Test</b>
      * <p>We set up the WebDriver, and navigate to the base URL of the ParaBank application. We also set the seed for
-     * both our own Random instance and the SingletonRandomGenerator used by GraphWalker.</p>
+     * both our own Random instance and the SingletonRandomGenerator used by GraphWalker. Finally, we reset & prepare
+     * the ParaBank database for testing.</p>
      */
     @Before
     public void beforeTest() {
-        Driver.setDriver(DriverFactory.getDriver("Chrome"));
+        Driver.setDriver(DriverFactory.getDriver("Chrome", forceHeadless));
         Driver.getDriver().get(Urls.BASE_URL);
         Driver.getDriver().manage().window().maximize();
         Helpers.seedRandom(SEED);
         SingletonRandomGenerator.setSeed(SEED);
+        Helpers.resetAndSetupParaBank();
+        Driver.getDriver().get(Urls.BASE_URL);
     }
 
     /**
