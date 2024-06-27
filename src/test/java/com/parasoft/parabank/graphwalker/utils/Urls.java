@@ -16,4 +16,5 @@ public class Urls {
     public static final String UPDATE_INFO_URL = BASE_URL + "/updateprofile.htm";
     public static final String REQUEST_LOAN_URL = BASE_URL + "/requestloan.htm";
     public static final String LOGOUT_URL = BASE_URL + "/logout.htm";
+    public static final String ADMIN_URL = BASE_URL + "/admin.htm";
 }
