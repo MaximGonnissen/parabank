@@ -30,14 +30,20 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RunWith(value = Parameterized.class)
 public class GraphWalkerBenchmarkIT {
     protected static final long SEED = 0;
-    protected static final String BENCHMARK_PATH = "org/graphwalker/parabank_benchmark_edge_coverage";
-//    protected static final String BENCHMARK_PATH = "org/graphwalker/parabank_benchmark_vertex_coverage"; // TODO: Comment previous, and uncomment this, to run vertex coverage benchmarks
+    /**
+     * <p>The path to a specific benchmark directory.</p>
+     * <p>Example: "org/graphwalker/parabank_benchmark_edge_coverage"</p>
+     * <p>NOTE: This cannot be in the resources folder, since otherwise installation will spend significant time
+     * scanning through this folder. Place it outside of the project.</p>
+     */
+    protected static final String BENCHMARK_PATH = "";
     protected static final boolean SKIP_SUCCESSFUL_TESTS = true;
     protected static final int RUN_LIMIT = Integer.MAX_VALUE;
     protected static final int MAX_TESTS = Integer.MAX_VALUE;
@@ -49,7 +55,12 @@ public class GraphWalkerBenchmarkIT {
 
     @Parameters(name = "{0}")
     public static List<LateInitBenchmarkPath> data() {
-        return BenchmarkPathParser.getLateInitBenchmarkPaths(BENCHMARK_PATH, RUN_LIMIT).stream().filter(lateInitBenchmarkPath -> SKIP_SUCCESSFUL_TESTS && !doTestResultExistsANDSuccess(lateInitBenchmarkPath.pathFile)).limit(MAX_TESTS).collect(Collectors.toList());
+        try {
+            return BenchmarkPathParser.getLateInitBenchmarkPaths(BENCHMARK_PATH, RUN_LIMIT).stream().filter(lateInitBenchmarkPath -> SKIP_SUCCESSFUL_TESTS && !doTestResultExistsANDSuccess(lateInitBenchmarkPath.pathFile)).limit(MAX_TESTS).collect(Collectors.toList());
+        } catch (IllegalArgumentException e) {
+            logger.error("Could not parse benchmark paths: {}", e.getMessage());
+            return new ArrayList<>();
+        }
     }
 
 

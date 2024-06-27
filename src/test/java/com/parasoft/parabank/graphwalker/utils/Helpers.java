@@ -30,7 +30,7 @@ public class Helpers {
         // walks from running out of money.
         Driver.navigateTo(Urls.ADMIN_URL);
         Driver.waitFor(20);
-        Driver.setField(By.id("initialBalance"), "1000000");
+        Driver.setField(By.id("initialBalance"), "100000000");
         Driver.clickElement(By.xpath("//input[@type='submit' and @value='Submit']"));
         Driver.waitFor(10);
         Driver.clickElement(By.xpath("//button[@name='action' and @value='CLEAN']"));

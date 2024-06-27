@@ -84,6 +84,15 @@ public class RequestLoanImpl extends TestExecutionContext implements RequestLoan
     @Override
     public void v_Loan_Processed() {
         Assert.assertTrue(Driver.containsUrl(Urls.REQUEST_LOAN_URL));
+
+        if (Driver.containsText("We cannot grant a loan in that amount with your available funds.")) {
+            throw new AssertionError("Loan amount too high");
+        }
+
+        if (Driver.containsText("You do not have sufficient funds for the given down payment.")) {
+            throw new AssertionError("Insufficient funds");
+        }
+
         Assert.assertTrue(Driver.containsText("Congratulations, your loan has been approved."));
     }
 

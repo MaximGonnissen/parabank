@@ -113,7 +113,7 @@ public class GraphWalkerIT {
 
         printProfilingInfo(executor.getMachine());
 
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
+        Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
 
     /**
@@ -129,7 +129,7 @@ public class GraphWalkerIT {
 
         printProfilingInfo(executor.getMachine());
 
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
+        Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
 
     /**
@@ -145,7 +145,7 @@ public class GraphWalkerIT {
 
         printProfilingInfo(executor.getMachine());
 
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
+        Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
 
     /**
@@ -161,7 +161,7 @@ public class GraphWalkerIT {
 
         printProfilingInfo(executor.getMachine());
 
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
+        Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
 
     /**
@@ -177,7 +177,7 @@ public class GraphWalkerIT {
 
         printProfilingInfo(executor.getMachine());
 
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
+        Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
 
     /**
@@ -193,7 +193,7 @@ public class GraphWalkerIT {
 
         printProfilingInfo(executor.getMachine());
 
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
+        Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
 
     /**
@@ -209,7 +209,7 @@ public class GraphWalkerIT {
 
         printProfilingInfo(executor.getMachine());
 
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
+        Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
 
     /**
@@ -225,7 +225,7 @@ public class GraphWalkerIT {
 
         printProfilingInfo(executor.getMachine());
 
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
+        Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
 
     /**
@@ -241,7 +241,7 @@ public class GraphWalkerIT {
 
         printProfilingInfo(executor.getMachine());
 
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
+        Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
 
     /**
@@ -257,6 +257,6 @@ public class GraphWalkerIT {
 
         printProfilingInfo(executor.getMachine());
 
-        Assert.assertTrue(ResultHandler.handleResult(result, false));
+        Assert.assertTrue(ResultHandler.handleResult(result, true));
     }
 }
