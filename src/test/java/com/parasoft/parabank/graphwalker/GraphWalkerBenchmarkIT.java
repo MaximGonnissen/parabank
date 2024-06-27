@@ -36,7 +36,8 @@ import java.util.stream.Collectors;
 @RunWith(value = Parameterized.class)
 public class GraphWalkerBenchmarkIT {
     protected static final long SEED = 0;
-    protected static final String BENCHMARK_PATH = "C:\\Users\\Kunne\\PycharmProjects\\thesisBenchmarkAnalysis\\results\\parabank_benchmark_edge_coverage";
+    protected static final String BENCHMARK_PATH = "org/graphwalker/parabank_benchmark_edge_coverage";
+//    protected static final String BENCHMARK_PATH = "org/graphwalker/parabank_benchmark_vertex_coverage"; // TODO: Comment previous, and uncomment this, to run vertex coverage benchmarks
     protected static final boolean SKIP_SUCCESSFUL_TESTS = true;
     protected static final int RUN_LIMIT = Integer.MAX_VALUE;
     protected static final int MAX_TESTS = Integer.MAX_VALUE;
@@ -146,6 +147,8 @@ public class GraphWalkerBenchmarkIT {
      */
     @Test
     public void runSingleBenchmark() throws IOException {
+        Helpers.resetAndSetupParaBank();
+
         UnifiedTestExecutor executor = new UnifiedTestExecutor(LoginImpl.class, AccountOverviewImpl.class, AccountActivityImpl.class, TransferFundsImpl.class, BillPayImpl.class, FindTransactionsImpl.class, RequestLoanImpl.class, OpenNewAccountImpl.class, UpdateContactInfoImpl.class, RegisterImpl.class);
 
         BenchmarkPath benchmarkPath = lateInitBenchmarkPath.constructBenchmarkPath(new Model(executor.getMachine().getCurrentContext().getModel()));
