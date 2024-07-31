@@ -56,7 +56,7 @@ public class GraphWalkerBenchmarkIT {
     @Parameters(name = "{0}")
     public static List<LateInitBenchmarkPath> data() {
         try {
-            return BenchmarkPathParser.getLateInitBenchmarkPaths(BENCHMARK_PATH, RUN_LIMIT).stream().filter(lateInitBenchmarkPath -> SKIP_SUCCESSFUL_TESTS && !doTestResultExistsANDSuccess(lateInitBenchmarkPath.pathFile)).limit(MAX_TESTS).collect(Collectors.toList());
+            return BenchmarkPathParser.getLateInitBenchmarkPaths(BENCHMARK_PATH, RUN_LIMIT).stream().filter(lateInitBenchmarkPath -> !(SKIP_SUCCESSFUL_TESTS && doTestResultExistsANDSuccess(lateInitBenchmarkPath.pathFile))).limit(MAX_TESTS).collect(Collectors.toList());
         } catch (IllegalArgumentException e) {
             logger.error("Could not parse benchmark paths: {}", e.getMessage());
             return new ArrayList<>();
